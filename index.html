@@ -307,6 +307,63 @@ html,body{height:100%;background:var(--bg);color:var(--tx);font-family:var(--san
 .phcard.ph-cur{background:linear-gradient(180deg,#EEF1FE,#fff);border-color:#C7D2FE;border-top-color:var(--acc);box-shadow:0 6px 18px rgba(79,110,247,.15)}
 .pipe-block{background:var(--bg1);border-radius:var(--r3);padding:18px;box-shadow:var(--shadow)}
 
+/* CONTAS (CRM) */
+.ac-tools{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:14px}
+.ac-tools .ttabs{margin-bottom:0}
+.ac-search{background:var(--bg1);border:1.5px solid var(--border);border-radius:var(--r2);padding:8px 13px;font-size:13px;font-family:var(--sans);color:var(--tx);outline:none;width:200px}
+.ac-search:focus{border-color:var(--acc)}
+.ac-alerts{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.ac-alert{display:inline-flex;align-items:center;gap:8px;padding:9px 14px;border-radius:var(--r2);font-size:13px;font-weight:600;cursor:pointer;border:1.5px solid transparent;transition:all .15s}
+.ac-alert:hover{transform:translateY(-1px)}
+.ac-alert.red{background:var(--red-bg);color:var(--red-tx);border-color:#FECACA}
+.ac-alert.amber{background:var(--amber-bg);color:var(--amber-tx);border-color:#FDE68A}
+.ac-alert.ok{background:var(--green-bg);color:var(--green-tx);cursor:default}
+.ac-alert.on{box-shadow:0 0 0 3px currentColor inset}
+.ac-net{display:inline-flex;align-items:center;justify-content:center;min-width:30px;height:30px;padding:0 6px;border-radius:9px;color:#fff;font-size:10px;font-weight:800;font-family:var(--mono);letter-spacing:.02em;flex-shrink:0}
+.ac-brand{background:var(--bg1);border-radius:var(--r3);box-shadow:var(--shadow);margin-bottom:16px;overflow:hidden}
+.ac-brand-h{display:flex;align-items:center;gap:12px;padding:14px 18px;border-bottom:1px solid var(--border);background:linear-gradient(90deg,color-mix(in srgb,var(--c1) 9%,#fff),#fff)}
+.ac-brand-h .pr-name{flex:1}
+.ac-brand-meta{font-size:12px;color:var(--tx3);font-family:var(--mono)}
+.ac-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px;padding:14px 18px}
+.ac-tile{border:1.5px solid var(--border);border-radius:var(--r2);padding:12px;cursor:pointer;transition:all .15s;background:var(--bg1);position:relative}
+.ac-tile:hover{border-color:var(--acc);box-shadow:var(--shadow2);transform:translateY(-1px)}
+.ac-tile-top{display:flex;align-items:center;gap:10px}
+.ac-handle{font-size:14px;font-weight:800;color:var(--tx);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ac-handle a{color:inherit;text-decoration:none}.ac-handle a:hover{color:var(--acc);text-decoration:underline}
+.ac-sub{font-size:11px;color:var(--tx3);font-family:var(--mono);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ac-flags{display:flex;gap:5px;flex-wrap:wrap;margin-top:10px}
+.ac-flag{font-size:10px;font-weight:700;padding:3px 8px;border-radius:20px;font-family:var(--mono);white-space:nowrap}
+.ac-flag.g{background:var(--green-bg);color:var(--green-tx)}
+.ac-flag.r{background:var(--red-bg);color:var(--red-tx)}
+.ac-flag.a{background:var(--amber-bg);color:var(--amber-tx)}
+.ac-flag.n{background:var(--bg3);color:var(--tx2)}
+.ac-add-tile{border:2px dashed var(--border);border-radius:var(--r2);display:flex;align-items:center;justify-content:center;min-height:90px;color:var(--tx3);font-weight:700;font-size:13px;cursor:pointer;transition:all .15s;background:transparent;font-family:var(--sans)}
+.ac-add-tile:hover{border-color:var(--acc);color:var(--acc);background:var(--acc-bg)}
+.ac-table{background:var(--bg1);border-radius:var(--r3);box-shadow:var(--shadow);overflow:hidden}
+.ac-tr{display:grid;grid-template-columns:120px minmax(120px,1fr) minmax(130px,1.1fr) minmax(170px,1.3fr) 110px 100px;gap:10px;align-items:center;padding:10px 16px;border-bottom:1px solid var(--border);font-size:13px;cursor:pointer;transition:background .12s}
+.ac-tr:last-child{border-bottom:none}
+.ac-tr:hover{background:var(--bg2)}
+.ac-tr a{color:var(--acc);text-decoration:none}.ac-tr a:hover{text-decoration:underline}
+.ac-th{background:var(--bg2);font-size:10px;font-family:var(--mono);font-weight:800;color:var(--tx3);text-transform:uppercase;letter-spacing:.07em;cursor:default}
+.ac-th:hover{background:var(--bg2)}
+.ac-cell{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
+.ac-id{background:var(--bg1);border-radius:var(--r3);box-shadow:var(--shadow);margin-bottom:12px;padding:16px 18px}
+.ac-id-top{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.ac-id-mail{font-size:15px;font-weight:800;color:var(--tx);font-family:var(--mono);flex:1;min-width:200px;word-break:break-all}
+.ac-id-uses{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px;padding-top:12px;border-top:1px dashed var(--border)}
+.ac-use{display:inline-flex;align-items:center;gap:6px;padding:4px 10px 4px 4px;border-radius:20px;background:var(--bg2);font-size:12px;font-weight:600;color:var(--tx2);cursor:pointer}
+.ac-use .ac-net{min-width:22px;height:22px;border-radius:50%;font-size:8px}
+.ac-use:hover{background:var(--acc-bg);color:var(--acc)}
+.ac-modal{display:none;position:fixed;inset:0;z-index:9100;background:rgba(15,23,42,.45);backdrop-filter:blur(4px);overflow-y:auto;padding:24px 16px}
+.ac-modal.open{display:block}
+.ac-modal-box{background:var(--bg1);border-radius:var(--r4);max-width:640px;margin:20px auto;box-shadow:0 24px 60px rgba(0,0,0,.25);overflow:hidden}
+.ac-modal-h{display:flex;align-items:center;gap:12px;padding:18px 22px;background:linear-gradient(120deg,#EEF1FE,#FCE7F3);border-bottom:1px solid var(--border)}
+.ac-modal-h b{font-size:17px;flex:1}
+.ac-modal-b{padding:20px 22px}
+.ac-modal-f{display:flex;gap:8px;padding:14px 22px;border-top:1px solid var(--border);background:var(--bg2)}
+.ac-note{font-size:12px;color:var(--tx3);margin-top:4px;line-height:1.5}
+@media(max-width:900px){.ac-tr{grid-template-columns:44px minmax(0,1fr) 90px}.ac-tr .ac-c-brand,.ac-tr .ac-c-mail,.ac-tr .ac-c-st{display:none}.ac-search{width:100%}}
+
 /* PRONTOS */
 .pr-sel{background:var(--bg1);border:1.5px solid var(--border);border-radius:var(--r2);padding:8px 13px;font-size:13px;font-family:var(--sans);color:var(--tx2);outline:none}
 .pr-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px;margin-bottom:28px}
@@ -629,6 +686,10 @@ window.db   = firebase.firestore();
     <div class="ni" onclick="go('perfis')">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
       <span>Perfis</span><span class="nb" id="nb-profiles">0</span>
+    </div>
+    <div class="ni" onclick="go('contas')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="2.5"/><path d="M5.5 16.5c.6-1.8 2-2.8 3.5-2.8s2.9 1 3.5 2.8"/><line x1="15" y1="9" x2="19" y2="9"/><line x1="15" y1="13" x2="19" y2="13"/></svg>
+      <span>Contas</span><span class="nb" id="nb-contas">0</span>
     </div>
     <div class="ni" onclick="go('pipeline')">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
@@ -962,6 +1023,29 @@ window.db   = firebase.firestore();
   <div class="ph"><div><div class="pt">Pipeline</div><div class="ps">Fase a fase de cada projeto</div></div></div>
   <select class="pipe-sel" id="pipe-sel" onchange="renderPipeline()"><option value="">Todos os projetos</option></select>
   <div id="pipe-container"></div>
+</div>
+
+<!-- CONTAS (CRM) -->
+<div class="page" id="page-contas">
+  <div class="ph">
+    <div><div class="pt">Contas</div><div class="ps">Marcas, redes sociais e emails de login. Senhas ficam no cofre — aqui só o mapa.</div></div>
+    <div class="pa">
+      <button class="btn btn-g btn-sm" onclick="openIdentity()">+ Email</button>
+      <button class="btn btn-p btn-sm" onclick="openAccount()">+ Conta</button>
+    </div>
+  </div>
+  <div class="stats" id="ac-stats"></div>
+  <div class="ac-alerts" id="ac-alerts"></div>
+  <div class="ac-tools">
+    <div class="ttabs">
+      <button class="ttab" id="act-brand" onclick="setAcView('brand')">Por marca</button>
+      <button class="ttab" id="act-table" onclick="setAcView('table')">Tabela</button>
+      <button class="ttab" id="act-mail" onclick="setAcView('mail')">Emails</button>
+    </div>
+    <input class="ac-search" id="ac-search" placeholder="Buscar @, marca, email..." oninput="renderContas()">
+  </div>
+  <div class="tchips" id="ac-chips"></div>
+  <div id="ac-body"></div>
 </div>
 
 <!-- PRONTOS -->
@@ -1418,13 +1502,15 @@ function load(){
   try{const r=localStorage.getItem(SK);if(r)D=JSON.parse(r);}catch(e){}
   if(!D.profiles) D.profiles = JSON.parse(JSON.stringify(DEFS.profiles||[]));
   if(!D.monthly) D.monthly = [];
+  if(!D.accounts) seedAccounts();
+  if(!D.identities) D.identities = [];
   try{const c=localStorage.getItem(CTX_KEY);if(c)CTX=c;}catch(e){}
   renderAll();
 }
 function uid(){return 'x'+Math.random().toString(36).slice(2,8)}
 
 function renderAll(){
-  updateBadges();renderDash();renderProjetos();renderProfiles();renderPipeline();renderIdeias();renderTools();renderCosts();renderMonthly();renderProntos();renderMainLog();populateSels();renderFinanceiro();
+  updateBadges();renderDash();renderProjetos();renderProfiles();renderPipeline();renderIdeias();renderTools();renderCosts();renderMonthly();renderProntos();renderContas();renderMainLog();populateSels();renderFinanceiro();
   renderPrompt();document.getElementById('ctx-edit').value=CTX;
 }
 
@@ -1434,6 +1520,7 @@ function updateBadges(){
   document.getElementById('nb-tools').textContent=D.tools.length;
   const nbp=document.getElementById('nb-profiles'); if(nbp) nbp.textContent=(D.profiles||[]).length;
   const nbr=document.getElementById('nb-prontos'); if(nbr) nbr.textContent=D.projects.reduce((a,p)=>a+(p&&p.phases||[]).reduce((b,ph)=>b+((ph&&ph.tasks)||[]).filter(t=>t.done).length,0),0);
+  const nbc=document.getElementById('nb-contas'); if(nbc) nbc.textContent=(D.accounts||[]).length;
   const nbm=document.getElementById('nb-mensal'); if(nbm) nbm.textContent=(D.monthly||[]).length;
 }
 
@@ -1448,7 +1535,7 @@ function go(p){
 const PAGE_COLORS={
   dashboard:['#4F6EF7','#8B5CF6'], empresa:['#16A34A','#14B8A6'], prompt:['#0EA5E9','#6366F1'],
   projetos:['#3B82F6','#06B6D4'], perfis:['#EC4899','#8B5CF6'], pipeline:['#8B5CF6','#4F6EF7'],
-  prontos:['#22C55E','#14B8A6'], ideias:['#F59E0B','#F97316'], ferramentas:['#0EA5E9','#64748B'],
+  prontos:['#22C55E','#14B8A6'], contas:['#E1306C','#8134AF'], ideias:['#F59E0B','#F97316'], ferramentas:['#0EA5E9','#64748B'],
   custos:['#EF4444','#F59E0B'], mensal:['#6366F1','#EC4899'], financeiro:['#14B8A6','#22C55E'],
   log:['#6366F1','#EC4899'], add:['#4F6EF7','#22C55E'],
 };
@@ -1707,6 +1794,220 @@ function setFase(pid,f){
   save();renderPipeline();renderProjetos();renderDash();renderProntos();
 }
 function addLogAuto(text,proj){D.logs.push({id:uid(),text,proj:proj||'',date:new Date().toISOString().slice(0,10)});renderMainLog();}
+
+// CONTAS (CRM): marcas → contas em cada rede → email de login. Sem senhas.
+const AC_NETS={
+  Instagram:{ab:'IG',bg:'linear-gradient(135deg,#F58529,#DD2A7B 55%,#8134AF)',url:h=>'instagram.com/'+h},
+  TikTok:{ab:'TT',bg:'linear-gradient(135deg,#111,#25F4EE 160%)',url:h=>'tiktok.com/@'+h},
+  YouTube:{ab:'YT',bg:'#FF0000',url:h=>'youtube.com/@'+h},
+  Facebook:{ab:'FB',bg:'#1877F2',url:h=>'facebook.com/'+h},
+  Threads:{ab:'TH',bg:'#111',url:h=>'threads.net/@'+h},
+  X:{ab:'X',bg:'#111',url:h=>'x.com/'+h},
+  LinkedIn:{ab:'IN',bg:'#0A66C2',url:h=>'linkedin.com/in/'+h},
+  Pinterest:{ab:'PI',bg:'#E60023',url:h=>'pinterest.com/'+h},
+  Kwai:{ab:'KW',bg:'#FF7A00',url:null},
+  WhatsApp:{ab:'WA',bg:'#25D366',url:null},
+  Telegram:{ab:'TG',bg:'#229ED9',url:h=>'t.me/'+h},
+  Site:{ab:'WWW',bg:'#4F6EF7',url:null},
+  Outro:{ab:'•••',bg:'#64748B',url:null},
+};
+const AC_2FA=['App autenticador','Chave de segurança','SMS','Nenhum','Não sei'];
+const AC_STATUS={ativa:{l:'Ativa',c:'g'},criando:{l:'Em criação',c:'n'},pausada:{l:'Pausada',c:'a'},encerrada:{l:'Encerrada',c:'n'}};
+let acView='brand', acNet='', acIssue='';
+try{const v=JSON.parse(localStorage.getItem('corujalabs_ac_view')||'{}');if(v.view)acView=v.view;}catch(e){}
+
+function netBadge(n,small){const m=AC_NETS[n]||AC_NETS.Outro;return `<span class="ac-net" style="background:${m.bg}${small?';min-width:20px;height:20px;border-radius:6px;font-size:8px;padding:0 4px':''}" title="${safeText(n)}">${m.ab}</span>`;}
+function cleanHandle(h){return String(h||'').trim().replace(/^@/,'');}
+function accUrl(a){
+  if(a.url) return projHref(a.url);
+  const m=AC_NETS[a.net]; const h=cleanHandle(a.handle);
+  return m&&m.url&&h?'https://'+m.url(h):'';
+}
+function acIssues(a){
+  if(a.status==='encerrada') return [];
+  const out=[];
+  if(!a.twofa||a.twofa==='Nenhum'||a.twofa==='Não sei') out.push('2fa');
+  if(!a.email) out.push('email');
+  if(!a.vault) out.push('vault');
+  return out;
+}
+// Primeira vez: importa as redes já cadastradas em Perfis (sem senha)
+function seedAccounts(){
+  D.accounts=[];
+  (D.profiles||[]).forEach(p=>Object.entries((p&&p.networks)||{}).forEach(([net,x])=>{
+    if(!x||!(x.handle||x.url||x.login)) return;
+    D.accounts.push({id:uid(),brand:p.name,net:AC_NETS[net]?net:'Outro',handle:x.handle||'',url:x.url||'',
+      email:/@.+\./.test(x.login||'')?x.login:'',twofa:'',vault:'',status:'ativa',notes:''});
+  }));
+}
+function setAcView(v){acView=v;try{localStorage.setItem('corujalabs_ac_view',JSON.stringify({view:v}));}catch(e){}renderContas();}
+function setAcNet(n){acNet=acNet===n?'':n;renderContas();}
+function setAcIssue(k){acIssue=acIssue===k?'':k;if(acIssue&&acView==='mail')acView='table';renderContas();}
+
+function renderContas(){
+  const body=document.getElementById('ac-body'); if(!body) return;
+  const accs=D.accounts||[], ids=D.identities||[];
+  ['brand','table','mail'].forEach(v=>document.getElementById('act-'+v)?.classList.toggle('active',acView===v));
+  const live=accs.filter(a=>a.status!=='encerrada');
+  const with2fa=live.filter(a=>a.twofa==='App autenticador'||a.twofa==='Chave de segurança'||a.twofa==='SMS').length;
+  const brands=[...new Set(accs.map(a=>a.brand||'Sem marca'))];
+  const mails=[...new Set([...ids.map(i=>i.email.toLowerCase()),...accs.map(a=>(a.email||'').toLowerCase()).filter(Boolean)])];
+  document.getElementById('ac-stats').innerHTML=[
+    {l:'Contas ativas',v:live.length,s:`${accs.length} no total`,c:'c1'},
+    {l:'Marcas',v:brands.length,s:'perfis / personagens',c:'c3'},
+    {l:'Emails de login',v:mails.length,s:`${ids.length} cadastrado(s)`,c:'c4'},
+    {l:'Com 2FA',v:live.length?Math.round(with2fa/live.length*100)+'%':'—',s:`${with2fa} de ${live.length}`,c:'c2'},
+  ].map(x=>`<div class="sc ${x.c}"><div class="sl">${x.l}</div><div class="sv">${x.v}</div><div class="ss">${x.s}</div></div>`).join('');
+
+  const cnt=k=>live.filter(a=>acIssues(a).includes(k)).length;
+  const al=[['2fa','red',`${cnt('2fa')} sem 2FA`],['email','amber',`${cnt('email')} sem email de login`],['vault','amber',`${cnt('vault')} sem senha no cofre`]].filter(([k])=>cnt(k));
+  document.getElementById('ac-alerts').innerHTML=accs.length?(al.length?al.map(([k,c,l])=>`<span class="ac-alert ${c} ${acIssue===k?'on':''}" onclick="setAcIssue('${k}')">⚠ ${l}</span>`).join('')+(acIssue?`<span class="ac-alert ok" style="cursor:pointer" onclick="setAcIssue('')">✕ limpar filtro</span>`:''):'<span class="ac-alert ok">✓ Tudo em ordem: todas as contas com 2FA, email e cofre</span>'):'';
+
+  const counts={};accs.forEach(a=>counts[a.net]=(counts[a.net]||0)+1);
+  if(acNet&&!counts[acNet]) acNet='';
+  document.getElementById('ac-chips').innerHTML=acView==='mail'?'':`<button class="tchip ${!acNet?'on':''}" onclick="setAcNet('')" style="${!acNet?'background:var(--acc);color:#fff':''}">Todas<span class="n">${accs.length}</span></button>`+
+    Object.keys(counts).sort((a,b)=>counts[b]-counts[a]).map(n=>{const on=acNet===n;return `<button class="tchip ${on?'on':''}" onclick="setAcNet('${safeText(n)}')" style="${on?'background:#1A1D23;color:#fff':''}">${netBadge(n,true)}${safeText(n)}<span class="n">${counts[n]}</span></button>`;}).join('');
+
+  const q=(document.getElementById('ac-search')?.value||'').toLowerCase().trim();
+  let list=accs.filter(a=>(!acNet||a.net===acNet)&&(!acIssue||acIssues(a).includes(acIssue))&&(!q||[a.brand,a.net,a.handle,a.email,a.vault,a.notes].join(' ').toLowerCase().includes(q)));
+
+  if(!accs.length&&acView!=='mail'){
+    body.innerHTML=`<div class="mc-card"><div class="mc-empty"><div class="mc-empty-ic">${netBadge('Instagram')}</div><strong>Nenhuma conta ainda</strong>Cadastre cada perfil de cada rede: marca, @usuário, email de login, 2FA e onde está a senha.<div style="margin-top:14px"><button class="btn btn-p" onclick="openAccount()">+ Primeira conta</button></div></div></div>`;
+    return;
+  }
+  const flags=a=>{
+    const f=[];const st=AC_STATUS[a.status]||AC_STATUS.ativa;
+    if(a.status&&a.status!=='ativa') f.push(`<span class="ac-flag ${st.c}">${st.l}</span>`);
+    const iss=acIssues(a);
+    f.push(iss.includes('2fa')?'<span class="ac-flag r">sem 2FA</span>':a.twofa?`<span class="ac-flag g">2FA · ${safeText(a.twofa==='App autenticador'?'app':a.twofa==='Chave de segurança'?'chave':'SMS')}</span>`:'');
+    f.push(iss.includes('vault')?'<span class="ac-flag a">sem cofre</span>':a.vault?'<span class="ac-flag g">🔒 cofre</span>':'');
+    if(iss.includes('email')) f.push('<span class="ac-flag a">sem email</span>');
+    return f.join('');
+  };
+  const handleHtml=a=>{const h=cleanHandle(a.handle);const u=accUrl(a);const t=h?'@'+h:(a.url||'(sem @)');return u?`<a href="${safeText(u)}" target="_blank" rel="noopener" onclick="event.stopPropagation()">${safeText(t)}</a>`:safeText(t);};
+
+  if(acView==='brand'){
+    const groups={};list.forEach(a=>{const b=a.brand||'Sem marca';(groups[b]=groups[b]||[]).push(a);});
+    const order=Object.keys(groups).sort((a,b)=>groups[b].length-groups[a].length||a.localeCompare(b,'pt-BR'));
+    body.innerHTML=order.length?order.map((b,bi)=>{
+      const c1=MC_COLORS[bi%MC_COLORS.length];const items=groups[b].sort((x,y)=>x.net.localeCompare(y.net));
+      const issues=items.reduce((n,a)=>n+acIssues(a).length,0);
+      return `<div class="ac-brand" style="--c1:${c1}">
+        <div class="ac-brand-h"><div class="pc-av" style="background:linear-gradient(135deg,${c1},color-mix(in srgb,${c1} 55%,#8B5CF6))">${safeText(initials(b))}</div>
+          <div class="pr-name">${safeText(b)}<div class="ac-brand-meta">${items.length} conta(s) · ${[...new Set(items.map(a=>a.email).filter(Boolean))].length} email(s)${issues?` · <span style="color:var(--red-tx)">${issues} pendência(s)</span>`:''}</div></div>
+          <div style="display:flex;gap:4px;flex-wrap:wrap">${[...new Set(items.map(a=>a.net))].map(netBadge).join('')}</div></div>
+        <div class="ac-grid">${items.map(a=>`<div class="ac-tile" onclick="openAccount('${a.id}')">
+            <div class="ac-tile-top">${netBadge(a.net)}<div style="min-width:0;flex:1"><div class="ac-handle">${handleHtml(a)}</div><div class="ac-sub">${safeText(a.email||'— email de login não informado')}</div></div></div>
+            <div class="ac-flags">${flags(a)}</div></div>`).join('')}
+          <button class="ac-add-tile" data-brand="${safeText(b)}" onclick="openAccount(null,this.dataset.brand)">+ conta para ${safeText(b)}</button></div>
+      </div>`;}).join(''):'<div class="empty">Nenhuma conta com esse filtro.</div>';
+  } else if(acView==='table'){
+    const rows=[...list].sort((a,b)=>(a.brand||'').localeCompare(b.brand||'','pt-BR')||a.net.localeCompare(b.net));
+    body.innerHTML=rows.length?`<div class="ac-table"><div class="ac-tr ac-th"><div>Rede</div><div class="ac-c-brand">Marca</div><div>@usuário</div><div class="ac-c-mail">Email de login</div><div>2FA / cofre</div><div class="ac-c-st">Status</div></div>`+
+      rows.map(a=>{const st=AC_STATUS[a.status]||AC_STATUS.ativa;return `<div class="ac-tr" onclick="openAccount('${a.id}')">
+        <div style="display:flex;align-items:center;gap:8px">${netBadge(a.net)}<span class="ac-cell ac-c-brand" style="font-size:12px;color:var(--tx2)">${safeText(a.net)}</span></div>
+        <div class="ac-cell ac-c-brand" style="font-weight:700">${safeText(a.brand||'—')}</div>
+        <div class="ac-cell" style="font-weight:700">${handleHtml(a)}</div>
+        <div class="ac-cell ac-c-mail" style="font-family:var(--mono);font-size:12px;color:var(--tx2)">${safeText(a.email||'—')}</div>
+        <div class="ac-flags" style="margin:0">${acIssues(a).includes('2fa')?'<span class="ac-flag r">2FA ✗</span>':'<span class="ac-flag g">2FA ✓</span>'}${acIssues(a).includes('vault')?'<span class="ac-flag a">🔒✗</span>':'<span class="ac-flag g">🔒✓</span>'}</div>
+        <div class="ac-c-st"><span class="ac-flag ${st.c}">${st.l}</span></div></div>`;}).join('')+'</div>':'<div class="empty">Nenhuma conta com esse filtro.</div>';
+  } else {
+    const known=new Set(ids.map(i=>i.email.toLowerCase()));
+    const missing=[...new Set(accs.map(a=>(a.email||'').toLowerCase()).filter(e=>e&&!known.has(e)))];
+    const uses=e=>accs.filter(a=>(a.email||'').toLowerCase()===e.toLowerCase());
+    const idList=ids.filter(i=>!q||[i.email,i.label,i.recovery,i.vault].join(' ').toLowerCase().includes(q));
+    body.innerHTML=(idList.length?idList.map(i=>{const u=uses(i.email);const weak=!i.twofa||i.twofa==='Nenhum'||i.twofa==='Não sei';
+      return `<div class="ac-id"><div class="ac-id-top">
+        <div class="pc-av" style="background:linear-gradient(135deg,#EA4335,#FBBC05)">@</div>
+        <div class="ac-id-mail">${safeText(i.email)}<div class="ac-sub" style="font-family:var(--sans)">${safeText(i.label||'')}</div></div>
+        <div class="ac-flags" style="margin:0">${weak?'<span class="ac-flag r">sem 2FA</span>':`<span class="ac-flag g">2FA · ${safeText(i.twofa)}</span>`}${i.recovery?'<span class="ac-flag g">recuperação ✓</span>':'<span class="ac-flag a">sem recuperação</span>'}${i.vault?'<span class="ac-flag g">🔒 cofre</span>':'<span class="ac-flag a">sem cofre</span>'}</div>
+        <button class="tedit-btn" onclick="openIdentity('${i.id}')">Editar</button></div>
+        <div class="ac-id-uses">${u.length?u.map(a=>`<span class="ac-use" onclick="openAccount('${a.id}')">${netBadge(a.net)}${safeText(a.brand||'')} · @${safeText(cleanHandle(a.handle)||'?')}</span>`).join(''):'<span class="ac-sub">Nenhuma conta usa este email ainda.</span>'}</div></div>`;}).join(''):'')+
+      (missing.length?`<p class="sec-lbl" style="margin-top:18px">Emails usados em contas, mas não cadastrados</p>${missing.map(e=>`<div class="ac-id" style="display:flex;align-items:center;gap:12px;flex-wrap:wrap"><div class="ac-id-mail">${safeText(e)}<div class="ac-sub" style="font-family:var(--sans)">usado em ${uses(e).length} conta(s)</div></div><button class="btn btn-p btn-sm" data-mail="${safeText(e)}" onclick="openIdentity(null,this.dataset.mail)">Cadastrar</button></div>`).join('')}`:'')+
+      (!idList.length&&!missing.length?`<div class="mc-card"><div class="mc-empty"><strong>Nenhum email cadastrado</strong>Cadastre os emails que você usa para entrar nas redes (ex.: o email de cada marca), com 2FA e recuperação.<div style="margin-top:14px"><button class="btn btn-p" onclick="openIdentity()">+ Email</button></div></div></div>`:'');
+  }
+}
+
+// ----- formulários -----
+function acField(id,label,html,span){return `<div class="fgrp ${span?'s2':''}"><label class="flbl" for="${id}">${label}</label>${html}</div>`;}
+function acSelect(id,opts,val){return `<select class="fsel" id="${id}">${opts.map(([v,l])=>`<option value="${safeText(v)}" ${v===val?'selected':''}>${safeText(l)}</option>`).join('')}</select>`;}
+function acInput(id,val,ph,list){return `<input class="finput" id="${id}" value="${safeText(val||'')}" placeholder="${safeText(ph||'')}" ${list?`list="${list}"`:''}>`;}
+function closeAcModal(){document.getElementById('ac-modal').classList.remove('open');}
+function openAcModal(title,icon,bodyHtml,footHtml){
+  document.getElementById('ac-modal-title').textContent=title;
+  document.getElementById('ac-modal-ic').innerHTML=icon;
+  document.getElementById('ac-modal-body').innerHTML=bodyHtml;
+  document.getElementById('ac-modal-foot').innerHTML=footHtml;
+  document.getElementById('ac-modal').classList.add('open');
+  setTimeout(()=>document.querySelector('#ac-modal-body input, #ac-modal-body select')?.focus(),50);
+}
+const VAULT_NOTE='<div class="ac-note">Não guarde a senha aqui. Informe onde ela está, ex.: <b>Bitwarden › Tâmara › Instagram</b>.</div>';
+function openAccount(id,brand){
+  const a=(D.accounts||[]).find(x=>x.id===id)||{net:'Instagram',status:'ativa',brand:brand||''};
+  const brands=[...new Set([...(D.accounts||[]).map(x=>x.brand),...(D.profiles||[]).map(p=>p&&p.name),...D.projects.map(p=>p&&p.name)].filter(Boolean))];
+  const mails=[...new Set([...(D.identities||[]).map(i=>i.email),...(D.accounts||[]).map(x=>x.email)].filter(Boolean))];
+  openAcModal(id?'Editar conta':'Nova conta',netBadge(a.net),`
+    <datalist id="ac-dl-brand">${brands.map(b=>`<option value="${safeText(b)}">`).join('')}</datalist>
+    <datalist id="ac-dl-mail">${mails.map(m=>`<option value="${safeText(m)}">`).join('')}</datalist>
+    <div class="fg">
+      ${acField('ac-brand','Marca / perfil',acInput('ac-brand',a.brand,'Ex.: Tâmara Cavalcante','ac-dl-brand'))}
+      ${acField('ac-net','Rede',acSelect('ac-net',Object.keys(AC_NETS).map(n=>[n,n]),a.net))}
+      ${acField('ac-handle','@usuário',acInput('ac-handle',a.handle,'@tamaraorganiza'))}
+      ${acField('ac-url','Link (opcional)',acInput('ac-url',a.url,'gerado a partir do @ se vazio'))}
+      ${acField('ac-email','Email de login',acInput('ac-email',a.email,'email usado para entrar','ac-dl-mail'),true)}
+      ${acField('ac-twofa','Verificação em 2 etapas (2FA)',acSelect('ac-twofa',[['','— escolha'],...AC_2FA.map(x=>[x,x])],a.twofa||''))}
+      ${acField('ac-status','Status',acSelect('ac-status',Object.entries(AC_STATUS).map(([k,v])=>[k,v.l]),a.status||'ativa'))}
+      ${acField('ac-vault','Onde está a senha',acInput('ac-vault',a.vault,'Bitwarden › Marca › Rede')+VAULT_NOTE,true)}
+      ${acField('ac-notes','Notas',`<textarea class="fta" id="ac-notes" style="min-height:70px" placeholder="Telefone de recuperação, quem tem acesso, etc. (sem senhas)">${safeText(a.notes||'')}</textarea>`,true)}
+    </div>`,
+    `<button class="btn btn-p" onclick="saveAccount('${id||''}')">Salvar</button><button class="btn btn-g" onclick="closeAcModal()">Cancelar</button>${id?`<button class="btn btn-g" style="margin-left:auto;color:var(--red-tx)" onclick="delAccount('${id}')">Excluir</button>`:''}`);
+  document.getElementById('ac-net').onchange=e=>{document.getElementById('ac-modal-ic').innerHTML=netBadge(e.target.value);};
+}
+function saveAccount(id){
+  const g=k=>document.getElementById('ac-'+k).value.trim();
+  if(!g('handle')&&!g('url')){document.getElementById('ac-handle').focus();return;}
+  const data={brand:g('brand')||'Sem marca',net:g('net'),handle:g('handle'),url:g('url'),email:g('email').toLowerCase(),twofa:g('twofa'),status:g('status'),vault:g('vault'),notes:document.getElementById('ac-notes').value.trim()};
+  if(!D.accounts) D.accounts=[];
+  const ex=D.accounts.find(x=>x.id===id);
+  if(ex) Object.assign(ex,data); else D.accounts.push({id:uid(),...data});
+  closeAcModal();save();renderContas();updateBadges();
+}
+function delAccount(id){
+  const a=(D.accounts||[]).find(x=>x.id===id);
+  if(!a||!confirm(`Excluir a conta ${a.net} @${cleanHandle(a.handle)} de ${a.brand}?`)) return;
+  D.accounts=D.accounts.filter(x=>x.id!==id);closeAcModal();save();renderContas();updateBadges();
+}
+function openIdentity(id,email){
+  const i=(D.identities||[]).find(x=>x.id===id)||{email:email||''};
+  openAcModal(id?'Editar email':'Novo email de login','<span class="ac-net" style="background:linear-gradient(135deg,#EA4335,#FBBC05)">@</span>',`
+    <div class="fg">
+      ${acField('ai-email','Email',acInput('ai-email',i.email,'marca@gmail.com'),true)}
+      ${acField('ai-label','Para que serve',acInput('ai-label',i.label,'Ex.: Marca Minha Diária e as redes dela'),true)}
+      ${acField('ai-twofa','2FA do email',acSelect('ai-twofa',[['','— escolha'],...AC_2FA.map(x=>[x,x])],i.twofa||''))}
+      ${acField('ai-recovery','Recuperação',acInput('ai-recovery',i.recovery,'email ou telefone de recuperação'))}
+      ${acField('ai-vault','Onde está a senha',acInput('ai-vault',i.vault,'Bitwarden › Emails')+VAULT_NOTE,true)}
+      ${acField('ai-notes','Notas',`<textarea class="fta" id="ai-notes" style="min-height:70px">${safeText(i.notes||'')}</textarea>`,true)}
+    </div>`,
+    `<button class="btn btn-p" onclick="saveIdentity('${id||''}')">Salvar</button><button class="btn btn-g" onclick="closeAcModal()">Cancelar</button>${id?`<button class="btn btn-g" style="margin-left:auto;color:var(--red-tx)" onclick="delIdentity('${id}')">Excluir</button>`:''}`);
+}
+function saveIdentity(id){
+  const g=k=>document.getElementById('ai-'+k).value.trim();
+  const email=g('email').toLowerCase();
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){alert('Informe um email válido.');document.getElementById('ai-email').focus();return;}
+  if(!D.identities) D.identities=[];
+  if(D.identities.some(x=>x.email===email&&x.id!==id)){alert('Esse email já está cadastrado.');return;}
+  const data={email,label:g('label'),twofa:g('twofa'),recovery:g('recovery'),vault:g('vault'),notes:document.getElementById('ai-notes').value.trim()};
+  const ex=D.identities.find(x=>x.id===id);
+  if(ex){const old=ex.email;Object.assign(ex,data);if(old!==email)(D.accounts||[]).forEach(a=>{if(a.email===old)a.email=email;});}
+  else D.identities.push({id:uid(),...data});
+  closeAcModal();save();renderContas();
+}
+function delIdentity(id){
+  const i=(D.identities||[]).find(x=>x.id===id);
+  if(!i||!confirm(`Excluir ${i.email} da lista? As contas que usam esse email continuam com ele.`)) return;
+  D.identities=D.identities.filter(x=>x.id!==id);closeAcModal();save();renderContas();
+}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeAcModal();});
 
 // PRONTOS
 function flipTask(tk){
@@ -2615,6 +2916,8 @@ async function fsLoad(uid){
       if(saved.ideias)   D.ideias   = saved.ideias;
       if(saved.logs)     D.logs     = saved.logs;
       if(saved.monthly)  D.monthly  = saved.monthly;
+      if(saved.accounts)   D.accounts   = saved.accounts;
+      if(saved.identities) D.identities = saved.identities;
       if(Array.isArray(saved.costs)){
         D.costs = saved.costs.map(c=>({...c, date: c.date||''}));
       } else {
@@ -2643,7 +2946,7 @@ function fsSave(uid){
     try{
       await db.collection('hubs').doc(uid).set({
         projects:D.projects,tools:D.tools,profiles:D.profiles||[],costs:D.costs,
-        ideias:D.ideias,logs:D.logs,monthly:D.monthly||[],updatedAt:new Date().toISOString()
+        ideias:D.ideias,logs:D.logs,monthly:D.monthly||[],accounts:D.accounts||[],identities:D.identities||[],updatedAt:new Date().toISOString()
       });
       const now=new Date().toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
       const sts=document.getElementById('sts');
@@ -2877,6 +3180,14 @@ function renderFinanceiro(){
 
 
 <!-- PROJECT DETAIL MODAL -->
+<div class="ac-modal" id="ac-modal" onclick="if(event.target===this)closeAcModal()">
+  <div class="ac-modal-box">
+    <div class="ac-modal-h"><span id="ac-modal-ic"></span><b id="ac-modal-title">Conta</b><button class="ibtn" onclick="closeAcModal()" title="Fechar">✕</button></div>
+    <div class="ac-modal-b" id="ac-modal-body"></div>
+    <div class="ac-modal-f" id="ac-modal-foot"></div>
+  </div>
+</div>
+
 <div id="proj-modal" style="display:none;position:fixed;inset:0;z-index:9000;background:rgba(0,0,0,.4);backdrop-filter:blur(4px);overflow-y:auto;padding:24px 16px" onclick="if(event.target===this)closeModal()">
   <div style="background:var(--bg1);border-radius:var(--r3);max-width:780px;margin:0 auto;box-shadow:0 24px 80px rgba(0,0,0,.18);border:1.5px solid var(--border);overflow:hidden">
     <!-- Modal header -->
