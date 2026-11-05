@@ -604,7 +604,7 @@ html,body{height:100%;background:var(--bg);color:var(--tx);font-family:var(--san
 .modal-meta-val{font-size:13px;font-weight:600;color:var(--tx)}
 .modal-meta-val a{color:var(--acc);text-decoration:none}.modal-meta-val a:hover{text-decoration:underline}
 </style>
-
+<link rel="stylesheet" href="assets/theme.css">
 
 <!-- Firebase SDKs -->
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
@@ -670,9 +670,28 @@ window.db   = firebase.firestore();
       </button>
     </div>
   </div>
+  <div class="nav-sect pf-sect">
+    <div class="nav-lbl">Portfólio</div>
+    <div class="ni active" onclick="go('portfolio')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l9 5-9 5-9-5 9-5z"/><path d="M3 12l9 5 9-5"/><path d="M3 17l9 5 9-5"/></svg>
+      <span>Produtos</span><span class="nb" id="nb-pf">0</span>
+    </div>
+    <div class="ni" onclick="go('infoprodutos')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+      <span>Infoprodutos</span>
+    </div>
+    <div class="ni" onclick="go('sites')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+      <span>Sites</span>
+    </div>
+    <div class="ni" onclick="go('empresas')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="9" y1="6" x2="9" y2="6.01"/><line x1="15" y1="6" x2="15" y2="6.01"/><line x1="9" y1="10" x2="9" y2="10.01"/><line x1="15" y1="10" x2="15" y2="10.01"/><path d="M9 22v-4h6v4"/></svg>
+      <span>Empresas</span>
+    </div>
+  </div>
   <div class="nav-sect">
     <div class="nav-lbl">Visão geral</div>
-    <div class="ni active" onclick="go('dashboard')">
+    <div class="ni" onclick="go('dashboard')">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
       <span>Dashboard</span>
     </div>
@@ -750,8 +769,14 @@ window.db   = firebase.firestore();
 <main class="main">
 <div class="content">
 
+<!-- PORTFÓLIO -->
+<div class="page active" id="page-portfolio"><div id="pf-root"></div></div>
+<div class="page" id="page-infoprodutos"><div id="ip-root"></div></div>
+<div class="page" id="page-sites"><div id="st-root"></div></div>
+<div class="page" id="page-empresas"><div id="em-root"></div></div>
+
 <!-- DASHBOARD -->
-<div class="page active" id="page-dashboard">
+<div class="page" id="page-dashboard">
   <div class="ph"><div><div class="pt">Dashboard</div><div class="ps">Visão geral de todos os projetos e atividades</div></div></div>
   <div class="stats" id="dash-stats"></div>
   <p style="font-size:12px;font-weight:700;color:var(--tx3);text-transform:uppercase;letter-spacing:.09em;font-family:var(--mono);margin-bottom:14px">Projetos ativos</p>
@@ -1523,6 +1548,7 @@ function uid(){return 'x'+Math.random().toString(36).slice(2,8)}
 function renderAll(){
   updateBadges();renderDash();renderProjetos();renderProfiles();renderPipeline();renderIdeias();renderTools();renderCosts();renderMonthly();renderProntos();renderContas();renderLegacyBanner();renderMainLog();populateSels();renderFinanceiro();
   renderPrompt();document.getElementById('ctx-edit').value=CTX;
+  if(typeof renderPortfolioAll==='function') renderPortfolioAll();
 }
 
 function updateBadges(){
@@ -1544,6 +1570,7 @@ function go(p){
 
 // Cor de cada seção: ícone do menu, cabeçalho e ícone da página
 const PAGE_COLORS={
+  portfolio:['#6E7DF0','#8B5CF6'], infoprodutos:['#F59E0B','#EC4899'], sites:['#14B8A6','#3B82F6'], empresas:['#94A3B8','#64748B'],
   dashboard:['#4F6EF7','#8B5CF6'], empresa:['#16A34A','#14B8A6'], prompt:['#0EA5E9','#6366F1'],
   projetos:['#3B82F6','#06B6D4'], perfis:['#EC4899','#8B5CF6'], pipeline:['#8B5CF6','#4F6EF7'],
   prontos:['#22C55E','#14B8A6'], contas:['#E1306C','#8134AF'], ideias:['#F59E0B','#F97316'], ferramentas:['#0EA5E9','#64748B'],
@@ -2979,6 +3006,7 @@ async function fsLoad(uid){
       if(saved.monthly)  D.monthly  = saved.monthly;
       if(saved.accounts)   D.accounts   = saved.accounts;
       if(saved.identities) D.identities = saved.identities;
+      if(saved.portfolio)  D.portfolio  = saved.portfolio; else needsSave = true;
       if(Array.isArray(saved.costs)){
         D.costs = saved.costs.map(c=>({...c, date: c.date||''}));
       } else {
@@ -3007,7 +3035,7 @@ function fsSave(uid){
     try{
       await db.collection('hubs').doc(uid).set({
         projects:D.projects,tools:D.tools,profiles:D.profiles||[],costs:D.costs,
-        ideias:D.ideias,logs:D.logs,monthly:D.monthly||[],accounts:D.accounts||[],identities:D.identities||[],updatedAt:new Date().toISOString()
+        ideias:D.ideias,logs:D.logs,monthly:D.monthly||[],accounts:D.accounts||[],identities:D.identities||[],portfolio:D.portfolio||null,updatedAt:new Date().toISOString()
       });
       const now=new Date().toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
       const sts=document.getElementById('sts');
@@ -3301,5 +3329,22 @@ function renderFinanceiro(){
   </div>
 </div>
 
+<!-- PAINEL DO PRODUTO -->
+<div class="pf-scrim" id="pf-scrim" onclick="pfClose()"></div>
+<aside class="pf-drawer" id="pf-drawer" role="dialog" aria-label="Detalhes do produto">
+  <div class="pf-dr-top">
+    <button class="pf-dr-x" onclick="pfClose()" aria-label="Fechar">×</button>
+    <div id="pf-dr-head"></div>
+    <div class="pf-tabs">
+      <button class="pf-tab on" data-tab="geral" onclick="pfSetTab('geral')">Geral</button>
+      <button class="pf-tab" data-tab="contatos" onclick="pfSetTab('contatos')">Contatos</button>
+      <button class="pf-tab" data-tab="dominio" onclick="pfSetTab('dominio')">Domínio</button>
+      <button class="pf-tab" data-tab="vendas" onclick="pfSetTab('vendas')">Vendas</button>
+    </div>
+  </div>
+  <div class="pf-dr-body" id="pf-dr-body"></div>
+</aside>
+<script src="assets/portfolio-data.js"></script>
+<script src="assets/portfolio.js"></script>
 </body>
 </html>

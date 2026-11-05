@@ -1,3 +1,19 @@
+# 🦉 Coruja Labs — Hub
+
+Painel de gestão dos produtos, marcas, contatos, domínios, infoprodutos, sites e empresas.
+Página inicial: **Portfólio**. Dados salvos no Firestore (`hubs/{uid}.portfolio`).
+
+| Página | O que mostra |
+|---|---|
+| Produtos | Cards por marca com saúde (crítico/atenção/em dia), alertas, checklist de domínio, contatos e próxima ação. Clique abre o painel de edição. |
+| Infoprodutos | Produtos do Kiwify por marca, preço, checkout e landing (editável). |
+| Sites | Correções de cada site com prioridade e arquivo a alterar. |
+| Empresas | Estrutura CNPJ 1 (serviços) / CNPJ 2 (produtos digitais) e plano de migração. |
+
+Arquivos: `assets/portfolio-data.js` (dados iniciais, usados só se o Firestore ainda não tiver portfólio), `assets/portfolio.js`, `assets/theme.css`.
+
+---
+
 # 📊 Coruja Labs — Métricas Windsor.ai
 
 Módulo de coleta e visualização de métricas de redes sociais via [Windsor.ai](https://windsor.ai).
