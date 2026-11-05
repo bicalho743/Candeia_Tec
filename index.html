@@ -2967,13 +2967,21 @@ const ALLOWED_EMAILS = ['corujalabs.dev@gmail.com','solanobicalho@gmail.com'];
 function signIn(){
   const provider = new firebase.auth.GoogleAuthProvider();
   provider.setCustomParameters({prompt: 'select_account'});
-  auth.signInWithPopup(provider).catch(e=>{
+  // Sessão vale só para esta aba: ao abrir o hub de novo, pede a conta outra vez.
+  // A marca é gravada antes do popup porque o onAuthStateChanged dispara antes do .then.
+  try{sessionStorage.setItem('cl_auth_chosen','1');}catch(e){}
+  auth.setPersistence(firebase.auth.Auth.Persistence.SESSION)
+    .then(()=>auth.signInWithPopup(provider))
+    .catch(e=>{
+    try{ if(!auth.currentUser) sessionStorage.removeItem('cl_auth_chosen'); }catch(_){}
     if(e.code==='auth/popup-closed-by-user'||e.code==='auth/cancelled-popup-request') return;
     alert('Erro ao entrar: '+e.message);
   });
 }
 function signOut(){
-  if(confirm('Sair do hub?')) auth.signOut();
+  if(!confirm('Sair do hub?')) return;
+  try{sessionStorage.removeItem('cl_auth_chosen');}catch(e){}
+  auth.signOut();
 }
 
 function showLogin(){
@@ -3085,6 +3093,13 @@ showLogin();
       auth.onAuthStateChanged(async function(user) {
         if(!user){
           showLogin();
+          return;
+  }
+        // Sessão restaurada de outra visita (sem escolher a conta nesta aba): sai e mostra o login.
+        let chosen=false; try{chosen=sessionStorage.getItem('cl_auth_chosen')==='1';}catch(e){}
+        if(!chosen){
+          showLogin();
+          auth.signOut();
           return;
   }
         if(!ALLOWED_EMAILS.includes((user.email||'').toLowerCase())){
