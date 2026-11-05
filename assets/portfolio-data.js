@@ -1,6 +1,6 @@
 /* Dados iniciais do portfólio — importados da planilha Dominios_Produtos.xlsx (05/11/2026).
    Só são usados quando o Firestore ainda não tem "portfolio". Depois disso, tudo é editado no hub. */
-const PORTFOLIO_SEED_VERSION = 1;
+const PORTFOLIO_SEED_VERSION = 1; // migrações em pfMigrate() (portfolio.js)
 
 const PF_CHECK_STEPS = [
   ['inpi',     'Busca INPI'],

@@ -31,15 +31,61 @@ let pfOpenId = null, pfTab = 'geral';
 
 /* ---------- dados ---------- */
 function pfEnsure(){
+  let changed = false;
   if(!D.portfolio || !Array.isArray(D.portfolio.produtos)){
     D.portfolio = JSON.parse(JSON.stringify(PORTFOLIO_SEED));
-    return true;
+    changed = true;
   }
   const P = D.portfolio;
   ['marcas','produtos','kiwify','correcoes','empresas','etapas'].forEach(k=>{ if(!Array.isArray(P[k])) P[k]=JSON.parse(JSON.stringify(PORTFOLIO_SEED[k])); });
   if(!P.holding) P.holding = JSON.parse(JSON.stringify(PORTFOLIO_SEED.holding));
   P.produtos.forEach(p=>{ if(!p.check) p.check = pfCheck(); PF_CHECK_STEPS.forEach(([k])=>{ if(!p.check[k]) p.check[k]='p'; }); });
-  return false;
+  if(pfMigrate(P)) changed = true;
+  return changed;
+}
+
+/* Atualizações de dados aplicadas uma vez sobre o que já está salvo (idempotentes). */
+function pfMigrate(P){
+  const v = P.seedVersion || 1;
+  if(v >= 2) return false;
+  const prod = id => P.produtos.find(x=>x.id===id);
+  const kw = id => P.kiwify.find(x=>x.id===id);
+  const fix = id => P.correcoes.find(x=>x.id===id);
+  const setP = (id, obj, ck) => { const p=prod(id); if(!p) return; Object.assign(p, obj); if(ck) Object.assign(p.check, ck); };
+
+  // 05/11/2026 — correções publicadas em tamara-site, landing do Frei Miguel e Casa em Ordem
+  ['c3','c4','c5','c7','c8','c9','c10','c11','c12','c13','c14','c15','c16','c17','c18','c19','c20'].forEach(id=>{ const c=fix(id); if(c) c.ok=true; });
+  const c15=fix('c15'); if(c15){ c15.txt='E-mail ofuscado pelo Cloudflare'; c15.fix='Removido: contato@tamaraorganiza.com.br não recebe e-mail (domínio sem MX)'; }
+  const c8=fix('c8'); if(c8) c8.fix='Criadas /curso/precificacao, /curso/formacao-completa e /curso/mudancas';
+  const c20=fix('c20'); if(c20){ c20.txt='README com preço errado (R$ 29,90)'; c20.fix='README corrigido: landing R$ 49,90; oferta /quiz1 R$ 29,70'; }
+  const add = c => { if(!fix(c.id)) P.correcoes.push(c); };
+  add({id:'c21', site:'tamaracavalcante.com.br', pag:'Contato', pri:'Média', txt:'Site sem e-mail de contato válido', fix:'Definir um e-mail que receba (ex.: contato@tamaracavalcante.com.br na Locaweb) e voltar a exibir', arquivo:'index.html, privacidade.html', ok:false});
+  add({id:'c22', site:'freimiguellucero.com.br', pag:'Repositório', pri:'Alta', txt:'PDFs pagos continuam no histórico do repositório público', fix:'Tornar o repositório privado ou limpar o histórico', arquivo:'GitHub', ok:false});
+  add({id:'c23', site:'casa_em_ordem.vidaemmetodo.com.br', pag:'Área do comprador', pri:'Alta', txt:'PDFs pagos e área exclusiva acessíveis sem login', fix:'Entregar pela área de membros da Kiwify; noindex e robots.txt já aplicados', arquivo:'pdfs/, jornada-exclusiva-ceo2026.html', ok:false});
+  add({id:'c24', site:'casa_em_ordem.vidaemmetodo.com.br', pag:'Quiz', pri:'Alta', txt:'Contador "condição especial termina em" vencido (21/07/2026)', fix:'Removido dos dois quizzes', arquivo:'casa-em-ordem-quiz/', ok:true});
+  add({id:'c25', site:'casa_em_ordem.vidaemmetodo.com.br', pag:'Home', pri:'Média', txt:'Sem política de privacidade, termos e contato', fix:'Criadas privacidade.html e termos.html; contato no rodapé', arquivo:'index.html', ok:true});
+  add({id:'c26', site:'casa_em_ordem.vidaemmetodo.com.br', pag:'Preço', pri:'Média', txt:'Preço de referência "De R$ 97,00"', fix:'Manter só se o kit já foi vendido por R$ 97 (CDC)', arquivo:'index.html, quizzes', ok:false});
+
+  // Frei Miguel
+  setP('mp12', {alerta:'PDFs no histórico do repositório público', emailPub:'corujalabs.dev@gmail.com',
+    acao:'Tornar o repositório privado; renomear o produto no Kiwify para "Diário do Despertar"', nota:'Landing corrigida em 05/11/2026: sem contador, sem 131k, depoimentos ocultos, personagem identificado, privacidade e termos. Kiwify no CPF do Solano.'},
+    {priv:'f', emailDom:'na'});
+
+  // Casa em Ordem é produto da Tâmara (domínio Vida em Método)
+  setP('mp14', {nome:'Casa em Ordem (kit)', marca:'tamara', alerta:'Área do comprador sem login', emailPub:'corujalabs.dev@gmail.com',
+    acao:'Mover entrega para a área de membros da Kiwify; confirmar se "De R$ 97" é preço real', nota:'Landing R$ 49,90 (JuDImie). Quiz /quiz1 R$ 29,70 (FOqNutF). Domínio vidaemmetodo.com.br.'},
+    {priv:'f', landing:'f'});
+  const k15=kw('k15'); if(k15) k15.marca='tamara';
+  if(!kw('k16')) P.kiwify.push({id:'k16', marca:'tamara', nome:'Casa em Ordem — oferta do diagnóstico /quiz1', preco:29.70, link:'pay.kiwify.com.br/FOqNutF', landing:'casa-em-ordem-quiz.vidaemmetodo.com.br/quiz1/', obs:'6x R$ 4,95'});
+  const k10=kw('k10'); if(k10 && !k10.link) k10.link='pay.kiwify.com.br/vfO3ury';
+  if(!P.produtos.some(p=>p.marca==='vida') && !P.kiwify.some(k=>k.marca==='vida')) P.marcas = P.marcas.filter(m=>m.id!=='vida');
+
+  // Tâmara
+  setP('mp10', {acao:'Definir um e-mail de contato que funcione (o do site não recebia)', nota:'Site corrigido em 05/11/2026: privacidade, termos, CNPJ, textos e método unificado.'}, {priv:'f'});
+  setP('mp11', {acao:'Informar preços das formações e da Coleção completa; abrir vendas da Especialista em Mudança'}, {priv:'f'});
+
+  P.seedVersion = 2;
+  return true;
 }
 function pfP(){ return D.portfolio; }
 function pfMarca(id){ return pfP().marcas.find(m=>m.id===id) || {id, nome:id||'Sem marca', cor:'#64748B'}; }
