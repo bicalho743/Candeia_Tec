@@ -47,7 +47,7 @@ function pfEnsure(){
 /* Atualizações de dados aplicadas uma vez sobre o que já está salvo (idempotentes). */
 function pfMigrate(P){
   const v = P.seedVersion || 1;
-  if(v >= 2) return false;
+  if(v >= 2) return pfMigrate3(P);
   const prod = id => P.produtos.find(x=>x.id===id);
   const kw = id => P.kiwify.find(x=>x.id===id);
   const fix = id => P.correcoes.find(x=>x.id===id);
@@ -85,6 +85,23 @@ function pfMigrate(P){
   setP('mp11', {acao:'Informar preços das formações e da Coleção completa; abrir vendas da Especialista em Mudança'}, {priv:'f'});
 
   P.seedVersion = 2;
+  pfMigrate3(P);
+  return true;
+}
+
+/* v3 — 05/11/2026: nomes definidos (Studio em Dia, Enxoval em Dia) e marca guarda-chuva Candeia Tec */
+function pfMigrate3(P){
+  if((P.seedVersion||1) >= 3) return false;
+  const prod = id => P.produtos.find(x=>x.id===id);
+  const p3 = prod('mp3');
+  if(p3){ p3.nome='Studio em Dia'; p3.dominio='studioemdia.com.br'; if(p3.alerta==='Nome em definição') p3.alerta='';
+    p3.acao='Registrar studioemdia.com.br (+ .app.br) e trocar o nome do rascunho no Play (pacote com.nailpro.app pode ficar)'; }
+  const p4 = prod('mp4');
+  if(p4){ p4.nome='Enxoval em Dia'; p4.dominio='enxovalemdia.com.br'; if(p4.alerta==='Nome em definição') p4.alerta='';
+    p4.acao='Registrar enxovalemdia.com.br (+ .app.br); título no Play: "Enxoval em Dia: Lista do Bebê"'; }
+  if(P.holding){ P.holding.nomeFuturo='Candeia Tec (candeiatec.com.br)';
+    P.holding.nota='Marca guarda-chuva: Candeia Tec. candeiatec.com.br disponível em 05/11/2026. Antes de registrar: busca no INPI pelo radical "Candeia" (classes 9, 41, 42) — candeia.com.br e candeia.app.br já têm dono.'; }
+  P.seedVersion = 3;
   return true;
 }
 function pfP(){ return D.portfolio; }
