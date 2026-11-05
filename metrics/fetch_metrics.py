@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Coruja Labs - Coleta de metricas via Windsor.ai
+Candeia Tec - Coleta de metricas via Windsor.ai
 
 Busca metricas de Instagram (nivel de conta e nivel de post) pela API
 do Windsor.ai e salva um JSON em data/<persona>_metrics.json.

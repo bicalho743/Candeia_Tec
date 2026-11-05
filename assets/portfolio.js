@@ -91,7 +91,7 @@ function pfMigrate(P){
 
 /* v3 — 05/11/2026: nomes definidos (Studio em Dia, Enxoval em Dia) e marca guarda-chuva Candeia Tec */
 function pfMigrate3(P){
-  if((P.seedVersion||1) >= 3) return false;
+  if((P.seedVersion||1) >= 3) return pfMigrate4(P);
   const prod = id => P.produtos.find(x=>x.id===id);
   const p3 = prod('mp3');
   if(p3){ p3.nome='Studio em Dia'; p3.dominio='studioemdia.com.br'; if(p3.alerta==='Nome em definição') p3.alerta='';
@@ -102,6 +102,21 @@ function pfMigrate3(P){
   if(P.holding){ P.holding.nomeFuturo='Candeia Tec (candeiatec.com.br)';
     P.holding.nota='Marca guarda-chuva: Candeia Tec. candeiatec.com.br disponível em 05/11/2026. Antes de registrar: busca no INPI pelo radical "Candeia" (classes 9, 41, 42) — candeia.com.br e candeia.app.br já têm dono.'; }
   P.seedVersion = 3;
+  pfMigrate4(P);
+  return true;
+}
+
+/* v4 — 05/11/2026: Coruja Labs passa a se chamar Candeia Tec */
+function pfMigrate4(P){
+  if((P.seedVersion||1) >= 4) return false;
+  if(P.holding){
+    if(!P.holding.nome || /coruja/i.test(P.holding.nome)) P.holding.nome = 'Candeia Tec';
+    P.holding.nomeFuturo = '';
+    P.holding.nota = 'Marca guarda-chuva: Candeia Tec (antiga Coruja Labs). Domínio candeiatec.com.br. Antes de registrar a marca: busca no INPI pelo radical "Candeia" (classes 9, 41, 42); candeia.com.br e candeia.app.br já têm dono. Trocar também o nome de desenvolvedor no Play Console.';
+  }
+  const apps = (P.marcas||[]).find(m=>m.id==='apps'); if(apps) apps.desc = 'Aplicativos e SaaS publicados pela Candeia Tec';
+  (P.produtos||[]).forEach(p=>{ ['acao','nota'].forEach(k=>{ if(typeof p[k]==='string') p[k]=p[k].replace(/Coruja Labs/g,'Candeia Tec'); }); });
+  P.seedVersion = 4;
   return true;
 }
 function pfP(){ return D.portfolio; }

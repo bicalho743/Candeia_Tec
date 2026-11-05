@@ -1,4 +1,4 @@
-# 🦉 Coruja Labs — Hub
+# Candeia Tec — Hub
 
 Painel de gestão dos produtos, marcas, contatos, domínios, infoprodutos, sites e empresas.
 Página inicial: **Portfólio**. Dados salvos no Firestore (`hubs/{uid}.portfolio`).
@@ -14,7 +14,7 @@ Arquivos: `assets/portfolio-data.js` (dados iniciais, usados só se o Firestore 
 
 ---
 
-# 📊 Coruja Labs — Métricas Windsor.ai
+# 📊 Candeia Tec — Métricas Windsor.ai
 
 Módulo de coleta e visualização de métricas de redes sociais via [Windsor.ai](https://windsor.ai).
 

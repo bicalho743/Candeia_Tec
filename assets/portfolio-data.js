@@ -23,12 +23,12 @@ function pfCheck(over){
 const PORTFOLIO_SEED = {
   seedVersion: PORTFOLIO_SEED_VERSION,
   holding: {
-    nome: 'Coruja Labs',
-    nomeFuturo: 'Alvor (em validação)',
+    nome: 'Candeia Tec',
+    nomeFuturo: '',
     nota: 'Nome da empresa em definição. Candeia descartada (conflito com candeiatec.com.br). Validar Alvor no INPI (classes 9, 41, 42), Registro.br e Instagram.'
   },
   marcas: [
-    {id:'apps',   nome:'Apps & SaaS',        cor:'#4053D6', desc:'Aplicativos e SaaS publicados pela Coruja Labs'},
+    {id:'apps',   nome:'Apps & SaaS',        cor:'#4053D6', desc:'Aplicativos e SaaS publicados pela Candeia Tec'},
     {id:'tamara', nome:'Tâmara Cavalcante',  cor:'#23385B', desc:'Organização residencial premium, ebooks e cursos'},
     {id:'frei',   nome:'Frei Miguel Lucero', cor:'#8A4B2A', desc:'Conteúdo e infoprodutos devocionais'},
     {id:'vida',   nome:'Vida em Método',     cor:'#0F766E', desc:'Casa em Ordem e quizzes de organização'},
@@ -43,11 +43,11 @@ const PORTFOLIO_SEED = {
      pacote:'com.agendamei.app', dominio:'agendamei.com.br', site:'', repo:'', checkout:'Google Play',
      email:'', emailPub:'contato@agendamei.com.br', instagram:'', whatsapp:'',
      acao:'Reservar @agendamei; registrar agendamei.com.br', nota:'', check:pfCheck()},
-    {id:'mp3', nome:'App de beleza (Nail Pro)', marca:'apps', tipo:'App + SaaS', cnpj:'2', status:'rascunho', alerta:'Nome em definição',
+    {id:'mp3', nome:'Studio em Dia', marca:'apps', tipo:'App + SaaS', cnpj:'2', status:'rascunho', alerta:'Nome em definição',
      pacote:'com.nailpro.app', dominio:'', site:'', repo:'', checkout:'Google Play',
      email:'', emailPub:'', instagram:'', whatsapp:'',
      acao:'Definir nome (Cadeira Cheia, Hora Bela, Studio em Dia) antes de publicar; pacote não muda', nota:'Concorrente do Nail Agenda. Público amplo: todas as profissionais da beleza.', check:pfCheck()},
-    {id:'mp4', nome:'App de enxoval', marca:'apps', tipo:'App + SaaS', cnpj:'2', status:'ideia', alerta:'Nome em definição',
+    {id:'mp4', nome:'Enxoval em Dia', marca:'apps', tipo:'App + SaaS', cnpj:'2', status:'ideia', alerta:'Nome em definição',
      pacote:'', dominio:'', site:'', repo:'', checkout:'Google Play / web',
      email:'', emailPub:'', instagram:'', whatsapp:'',
      acao:'Definir nome (Ninho, Bercinho, Enxoval Certo) e checar INPI', nota:'Concorrente do Enxovaly.', check:pfCheck()},

@@ -1,4 +1,4 @@
-# Coruja Labs - dependencias do coletor de metricas
+# Candeia Tec - dependencias do coletor de metricas
 #
 # O script fetch_metrics.py usa apenas a biblioteca padrao do Python
 # (urllib, json, argparse), portanto nao ha dependencias obrigatorias.
