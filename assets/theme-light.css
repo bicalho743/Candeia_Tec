@@ -1,0 +1,68 @@
+/* ===== Tema claro Candeia Tec — padrão. Ativo com <html data-theme="light">.
+   Mantém o âmbar da vela, mas com fundo creme e cartões brancos.
+   Sobrepõe as cores escuras de theme.css (por isso o prefixo e os !important). ===== */
+html[data-theme="light"]{
+  color-scheme: light;
+  --bg:#FAF7F2; --bg1:#FFFFFF; --bg2:#F7F3EC; --bg3:#EEE7DB; --border:rgba(120,88,36,.16);
+  --tx:#1F1A14; --tx2:#5C5346; --tx3:#978C7A;
+  --acc:#C97D12; --acc2:#9C5F08; --acc-bg:rgba(212,137,28,.12); --on-acc:#1B1206;
+  --glow:rgba(234,162,60,.10);
+  --side:#FFFDF9; --side2:#FBF6EE; --side-tx:#5C5346; --side-tx2:#A0957F;
+  --green:#22C55E; --green-bg:#DCFCE7; --green-tx:#15803D;
+  --blue:#3B82F6;  --blue-bg:#DBEAFE;  --blue-tx:#1D4ED8;
+  --purple:#8B5CF6;--purple-bg:#EDE9FE;--purple-tx:#6D28D9;
+  --amber:#F59E0B; --amber-bg:#FEF3C7; --amber-tx:#B45309;
+  --red:#EF4444;   --red-bg:#FEE2E2;   --red-tx:#B91C1C;
+  --pink:#EC4899;  --pink-bg:#FCE7F3;  --pink-tx:#BE185D;
+  --teal:#14B8A6;  --teal-bg:#CCFBF1;  --teal-tx:#0F766E;
+  --shadow:0 1px 3px rgba(60,40,10,.07),0 1px 2px rgba(60,40,10,.05);
+  --shadow2:0 14px 32px -14px rgba(60,40,10,.28),0 0 0 1px rgba(212,137,28,.16);
+}
+html[data-theme="light"],html[data-theme="light"] body{background:radial-gradient(1100px 520px at 72% -8%,rgba(234,162,60,.12),transparent 62%),radial-gradient(700px 400px at 0% 100%,rgba(234,162,60,.06),transparent 70%),var(--bg) fixed!important;color:var(--tx)}
+
+/* menu lateral */
+html[data-theme="light"] .sidebar{background:linear-gradient(180deg,#FFFDF9 0%,#FBF5EA 100%)!important;border-right:1px solid var(--border)!important;box-shadow:2px 0 12px rgba(60,40,10,.04)!important}
+html[data-theme="light"] .brand,html[data-theme="light"] .sidebar-foot{border-color:var(--border)}
+html[data-theme="light"] .brand-name{color:var(--tx)}
+html[data-theme="light"] .ni:hover{background:rgba(212,137,28,.08);color:var(--tx)}
+html[data-theme="light"] .ni:hover svg{color:var(--tx)}
+html[data-theme="light"] .ni.active{background:linear-gradient(90deg,rgba(212,137,28,.16),rgba(212,137,28,.04));color:#7A4806}
+html[data-theme="light"] .ni .nb{background:rgba(60,40,10,.06);color:var(--tx2)}
+html[data-theme="light"] .ni.active .nb{background:rgba(212,137,28,.22);color:#7A4806}
+
+/* geral */
+html[data-theme="light"] ::selection{background:rgba(212,137,28,.25);color:inherit}
+html[data-theme="light"] ::-webkit-scrollbar-thumb{background:#D9CEBC}
+html[data-theme="light"] .pt{color:var(--tx)}
+html[data-theme="light"] .finput:focus,html[data-theme="light"] .fsel:focus,html[data-theme="light"] .fta:focus,
+html[data-theme="light"] .mc-in:focus,html[data-theme="light"] .mc-money:focus-within,html[data-theme="light"] .email-cell-input:focus{background:#fff!important}
+html[data-theme="light"] .tchip:not(.on) span{background:rgba(60,40,10,.06)!important}
+html[data-theme="light"] .tcat-badge{background:var(--bg2)!important}
+html[data-theme="light"] .pc-row:hover{background:linear-gradient(90deg,rgba(212,137,28,.07),transparent)!important}
+
+/* portfólio: cores fixas pensadas para fundo escuro */
+html[data-theme="light"] .pf-kpi.t-red .pf-kpi-v{color:#DC2626}
+html[data-theme="light"] .pf-kpi.t-amber .pf-kpi-v{color:#D97706}
+html[data-theme="light"] .pf-prio-i.t-amber{border-left-color:#F59E0B}
+html[data-theme="light"] .pf-cell.warn::placeholder{color:#D97706}
+html[data-theme="light"] .pf-cd{color:#A0957F;border-color:#D9CEBC}
+html[data-theme="light"] .pf-cb{border-color:#CDBFA8}
+html[data-theme="light"] .pf-cb.on,html[data-theme="light"] .ck-f .pf-step-n{color:#fff}
+html[data-theme="light"] .pf-scrim{background:rgba(40,28,8,.32)}
+html[data-theme="light"] .pf-drawer.open{box-shadow:-20px 0 50px -12px rgba(60,40,10,.3)}
+html[data-theme="light"] .pf-metric{color:#15803D}
+
+/* tela de login */
+html[data-theme="light"] #login-screen{background:radial-gradient(700px 420px at 50% 30%,rgba(234,162,60,.18),transparent 65%),#FAF7F2!important}
+html[data-theme="light"] #login-screen>div{background:#fff!important;border:1px solid var(--border);box-shadow:0 30px 70px -24px rgba(60,40,10,.30),0 0 60px -24px rgba(234,162,60,.35)!important}
+html[data-theme="light"] #login-screen>div>div:nth-of-type(1){color:var(--tx)!important}
+html[data-theme="light"] #login-screen>div>div:nth-of-type(2){color:var(--tx2)!important}
+html[data-theme="light"] #login-screen button[onclick="signIn()"]{background:#fff!important;border-color:var(--border)!important;color:var(--tx)!important}
+html[data-theme="light"] #login-screen button[onclick="signIn()"]:hover{border-color:var(--acc)!important;background:#FFF8EC!important}
+html[data-theme="light"] #login-screen p{color:var(--tx3)!important}
+
+/* botão de troca de tema (vale para os dois temas) */
+.theme-tg{display:flex;align-items:center;gap:8px;width:100%;margin-bottom:6px;padding:7px 10px;border:1px solid var(--border);border-radius:var(--r2);background:transparent;color:var(--side-tx);font:inherit;font-size:12.5px;font-weight:600;cursor:pointer;transition:all .15s}
+.theme-tg:hover{border-color:var(--acc);color:var(--acc)}
+.theme-tg .ic{font-size:14px;line-height:1}
+@media(max-width:700px){.theme-tg{justify-content:center;padding:7px 0}.theme-tg .lb{display:none}}

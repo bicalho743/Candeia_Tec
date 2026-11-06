@@ -604,7 +604,11 @@ html,body{height:100%;background:var(--bg);color:var(--tx);font-family:var(--san
 .modal-meta-val{font-size:13px;font-weight:600;color:var(--tx)}
 .modal-meta-val a{color:var(--acc);text-decoration:none}.modal-meta-val a:hover{text-decoration:underline}
 </style>
+<script>/* tema: claro por padrão; escolha guardada neste navegador */
+try{document.documentElement.dataset.theme=localStorage.getItem('cl_theme')||'light';}catch(e){document.documentElement.dataset.theme='light';}
+</script>
 <link rel="stylesheet" href="assets/theme.css">
+<link rel="stylesheet" href="assets/theme-light.css">
 
 <!-- Firebase SDKs -->
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
@@ -748,6 +752,7 @@ window.db   = firebase.firestore();
     </div>
   </div>
   <div class="sidebar-foot">
+    <button class="theme-tg" id="theme-tg" onclick="toggleTheme()"></button>
     <div class="save-row"><div class="sdot" id="sdot"></div><span id="sts">Carregando...</span></div>
   </div>
 </nav>
@@ -1553,6 +1558,21 @@ function go(p){
   document.getElementById('page-'+p).classList.add('active');
   document.querySelector(`.ni[onclick="go('${p}')"]`)?.classList.add('active');
 }
+
+// Tema claro / escuro
+function themeLabel(){
+  const b=document.getElementById('theme-tg'); if(!b) return;
+  const light=document.documentElement.dataset.theme!=='dark';
+  b.innerHTML=light?'<span class="ic">🌙</span><span class="lb">Tema escuro</span>':'<span class="ic">☀️</span><span class="lb">Tema claro</span>';
+  b.title=light?'Mudar para o tema escuro':'Mudar para o tema claro';
+}
+function toggleTheme(){
+  const next=document.documentElement.dataset.theme==='dark'?'light':'dark';
+  document.documentElement.dataset.theme=next;
+  try{localStorage.setItem('cl_theme',next);}catch(e){}
+  themeLabel();
+}
+themeLabel();
 
 // Cor de cada seção: ícone do menu, cabeçalho e ícone da página
 const PAGE_COLORS={
