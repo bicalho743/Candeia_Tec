@@ -262,7 +262,7 @@ html,body{font-size:14.5px}
 .ph::after{display:none}
 .pt-ic{width:34px;height:34px;padding:8px;border-radius:10px;box-shadow:none}
 .ps{margin-left:46px}
-#page-portfolio .ps,#page-infoprodutos .ps,#page-sites .ps,#page-empresas .ps{margin-left:0}
+#page-portfolio .ps,#page-infoprodutos .ps,#page-sites .ps,#page-marketing .ps,#page-empresas .ps{margin-left:0}
 .ni svg{background:none!important;width:18px!important;height:18px!important;padding:0!important;color:var(--side-tx)}
 .ni:hover svg{color:#fff}
 .ni.active svg{color:var(--acc)}
