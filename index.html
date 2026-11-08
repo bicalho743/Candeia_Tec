@@ -609,6 +609,7 @@ try{document.documentElement.dataset.theme=localStorage.getItem('cl_theme')||'li
 </script>
 <link rel="stylesheet" href="assets/theme.css">
 <link rel="stylesheet" href="assets/theme-light.css">
+<link rel="stylesheet" href="assets/marketing.css">
 
 <!-- Firebase SDKs -->
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
@@ -669,6 +670,10 @@ window.db   = firebase.firestore();
     <div class="ni" onclick="go('infoprodutos')">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
       <span>Infoprodutos</span>
+    </div>
+    <div class="ni" onclick="go('marketing')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 11-5.8-1.6"/></svg>
+      <span>Marketing</span><span class="nb" id="nb-mk">·</span>
     </div>
     <div class="ni" onclick="go('sites')">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
@@ -764,6 +769,7 @@ window.db   = firebase.firestore();
 <div class="page active" id="page-portfolio"><div id="pf-root"></div></div>
 <div class="page" id="page-infoprodutos"><div id="ip-root"></div></div>
 <div class="page" id="page-sites"><div id="st-root"></div></div>
+<div class="page" id="page-marketing"><div id="mk-root"></div></div>
 <div class="page" id="page-empresas"><div id="em-root"></div></div>
 
 <!-- DASHBOARD -->
@@ -1576,7 +1582,7 @@ themeLabel();
 
 // Cor de cada seção: ícone do menu, cabeçalho e ícone da página
 const PAGE_COLORS={
-  portfolio:['#6E7DF0','#8B5CF6'], infoprodutos:['#F59E0B','#EC4899'], sites:['#14B8A6','#3B82F6'], empresas:['#94A3B8','#64748B'],
+  portfolio:['#6E7DF0','#8B5CF6'], infoprodutos:['#F59E0B','#EC4899'], marketing:['#EF4444','#F59E0B'], sites:['#14B8A6','#3B82F6'], empresas:['#94A3B8','#64748B'],
   dashboard:['#4F6EF7','#8B5CF6'], empresa:['#16A34A','#14B8A6'], prompt:['#0EA5E9','#6366F1'],
   projetos:['#3B82F6','#06B6D4'], perfis:['#EC4899','#8B5CF6'], pipeline:['#8B5CF6','#4F6EF7'],
   prontos:['#22C55E','#14B8A6'], contas:['#E1306C','#8134AF'], ideias:['#F59E0B','#F97316'], ferramentas:['#0EA5E9','#64748B'],
@@ -3371,11 +3377,13 @@ function renderFinanceiro(){
       <button class="pf-tab" data-tab="contatos" onclick="pfSetTab('contatos')">Contatos</button>
       <button class="pf-tab" data-tab="dominio" onclick="pfSetTab('dominio')">Domínio</button>
       <button class="pf-tab" data-tab="vendas" onclick="pfSetTab('vendas')">Vendas</button>
+      <button class="pf-tab" data-tab="marketing" onclick="pfSetTab('marketing')">Marketing</button>
     </div>
   </div>
   <div class="pf-dr-body" id="pf-dr-body"></div>
 </aside>
 <script src="assets/portfolio-data.js"></script>
 <script src="assets/portfolio.js"></script>
+<script src="assets/marketing.js"></script>
 </body>
 </html>
