@@ -18,6 +18,15 @@ Arquivos: `assets/portfolio-data.js` (dados iniciais, usados só se o Firestore 
 
 Módulo de coleta e visualização de métricas de redes sociais via [Windsor.ai](https://windsor.ai).
 
+## Site (candeiatec.com.br)
+
+| Caminho | O que é |
+|---|---|
+| `/` (`index.html`) | Página institucional da Candeia Tec, com os aplicativos e o contato |
+| `/privacidade/` | Política de privacidade (LGPD), usada também nas lojas de apps |
+| `/termos/` | Termos de uso |
+| `/hub/` | Hub interno (login Google) — botão **Entrar** no topo do site |
+
 ## Estrutura
 
 ```

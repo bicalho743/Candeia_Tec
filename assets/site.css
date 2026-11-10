@@ -1,0 +1,121 @@
+/* Site institucional Candeia Tec — página inicial, privacidade e termos */
+:root{
+  --bg:#FAF7F2; --bg1:#FFFFFF; --bg2:#F5F0E7; --border:rgba(120,88,36,.15);
+  --tx:#1F1A14; --tx2:#5C5346; --tx3:#8E8371;
+  --acc:#C97D12; --acc2:#9C5F08; --acc-bg:rgba(212,137,28,.12);
+  --green-bg:#DCFCE7; --green-tx:#15803D; --blue-bg:#DBEAFE; --blue-tx:#1D4ED8; --amber-bg:#FEF3C7; --amber-tx:#B45309;
+  --r:12px; --r2:18px;
+  --shadow:0 1px 3px rgba(60,40,10,.07),0 1px 2px rgba(60,40,10,.05);
+  --shadow2:0 18px 40px -18px rgba(60,40,10,.30);
+  --sans:'Plus Jakarta Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);color:var(--tx);line-height:1.6;-webkit-font-smoothing:antialiased;
+  background:radial-gradient(1000px 480px at 75% -10%,rgba(234,162,60,.16),transparent 62%),radial-gradient(700px 420px at 0% 30%,rgba(234,162,60,.06),transparent 70%),var(--bg)}
+a{color:var(--acc2)}
+img{max-width:100%;display:block}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+
+/* topo */
+.top{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
+.top .wrap{display:flex;align-items:center;gap:18px;height:64px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--tx);font-weight:800;font-size:17px;letter-spacing:-.3px}
+.logo img{width:34px;height:34px;border-radius:9px}
+.nav{display:flex;gap:4px;margin-left:auto}
+.nav a{color:var(--tx2);text-decoration:none;font-size:14px;font-weight:600;padding:8px 12px;border-radius:9px}
+.nav a:hover{background:var(--acc-bg);color:var(--acc2)}
+.login{display:inline-flex;align-items:center;gap:7px;margin-left:6px;padding:8px 15px;border-radius:10px;font-size:14px;font-weight:700;text-decoration:none;color:#1B1206;background:linear-gradient(180deg,#F2B04E,#E39A30);box-shadow:0 6px 16px -8px rgba(234,162,60,.7);white-space:nowrap}
+.login:hover{filter:brightness(1.04)}
+.login svg{width:16px;height:16px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 20px;border-radius:12px;font-weight:700;font-size:15px;text-decoration:none;transition:transform .15s,box-shadow .15s}
+.btn-p{background:linear-gradient(180deg,#F2B04E,#E39A30);color:#1B1206;box-shadow:0 8px 22px -8px rgba(234,162,60,.65)}
+.btn-p:hover{transform:translateY(-1px)}
+.btn-g{background:var(--bg1);color:var(--tx);border:1px solid var(--border)}
+.btn-g:hover{border-color:var(--acc)}
+
+/* hero */
+.hero{padding:72px 0 56px;text-align:center}
+.hero-ic{width:84px;height:84px;margin:0 auto 22px;border-radius:22px;box-shadow:0 18px 40px -14px rgba(60,40,10,.45),0 0 50px -10px rgba(234,162,60,.45)}
+.eyebrow{display:inline-block;font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--acc2);background:var(--acc-bg);padding:5px 12px;border-radius:20px;margin-bottom:16px}
+.hero h1{font-size:clamp(32px,5.4vw,54px);line-height:1.08;letter-spacing:-1.6px;font-weight:800;max-width:820px;margin:0 auto}
+.hero h1 em{font-style:normal;background:linear-gradient(90deg,#D98A1E,#B8702A);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{font-size:18px;color:var(--tx2);max-width:640px;margin:18px auto 30px}
+.hero .cta{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+
+/* seções */
+section{padding:56px 0}
+.sec-h{text-align:center;margin-bottom:34px}
+.sec-h h2{font-size:clamp(26px,3.6vw,36px);letter-spacing:-.8px;line-height:1.15}
+.sec-h p{color:var(--tx2);margin-top:8px;font-size:16px}
+
+/* apps */
+.apps{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:18px}
+.app{background:var(--bg1);border:1px solid var(--border);border-radius:var(--r2);padding:24px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:14px;transition:transform .2s,box-shadow .2s}
+.app:hover{transform:translateY(-3px);box-shadow:var(--shadow2)}
+.app-h{display:flex;gap:14px;align-items:center}
+.app-ic{width:52px;height:52px;border-radius:15px;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:#fff;box-shadow:0 8px 18px -8px rgba(0,0,0,.35)}
+.app-ic svg{width:26px;height:26px}
+.app h3{font-size:19px;letter-spacing:-.3px;line-height:1.2}
+.app-for{font-size:13px;color:var(--tx3);font-weight:600}
+.app p{color:var(--tx2);font-size:14.5px}
+.feat{list-style:none;display:flex;flex-direction:column;gap:7px}
+.feat li{display:flex;gap:9px;font-size:14px;color:var(--tx);line-height:1.45}
+.feat li::before{content:'';flex-shrink:0;width:18px;height:18px;margin-top:1px;border-radius:6px;background:var(--acc-bg) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%239C5F08' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E") center/11px no-repeat}
+.app-f{margin-top:auto;padding-top:14px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.st{font-size:12px;font-weight:800;padding:4px 10px;border-radius:20px;white-space:nowrap}
+.st.live{background:var(--green-bg);color:var(--green-tx)}
+.st.test{background:var(--blue-bg);color:var(--blue-tx)}
+.st.soon{background:var(--amber-bg);color:var(--amber-tx)}
+.app-f a{font-size:14px;font-weight:700;text-decoration:none}
+.app-f a:hover{text-decoration:underline}
+
+/* valores */
+.vals{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.val{background:var(--bg1);border:1px solid var(--border);border-radius:var(--r);padding:20px}
+.val b{display:block;font-size:16px;margin:8px 0 4px}
+.val span{color:var(--tx2);font-size:14px}
+.val i{font-style:normal;font-size:22px}
+
+/* contato */
+.contact{background:linear-gradient(135deg,#FFF8EC,#FFFFFF);border:1px solid var(--border);border-radius:24px;padding:40px 28px;text-align:center;box-shadow:var(--shadow)}
+.contact h2{font-size:clamp(24px,3.4vw,32px);letter-spacing:-.6px}
+.contact p{color:var(--tx2);margin:8px auto 22px;max-width:560px}
+.mail{font-size:clamp(17px,2.6vw,22px);font-weight:800;color:var(--acc2);text-decoration:none;word-break:break-all}
+.mail:hover{text-decoration:underline}
+
+/* rodapé */
+footer{border-top:1px solid var(--border);padding:28px 0 40px;margin-top:40px;color:var(--tx3);font-size:13.5px}
+footer .wrap{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+footer nav{display:flex;gap:16px;margin-left:auto;flex-wrap:wrap}
+footer a{color:var(--tx2);text-decoration:none;font-weight:600}
+footer a:hover{color:var(--acc2)}
+footer .hub{opacity:.75}
+
+/* páginas de texto (privacidade, termos) */
+.doc{max-width:780px;margin:0 auto;padding:48px 20px 20px}
+.doc h1{font-size:clamp(28px,4.4vw,40px);letter-spacing:-1px;line-height:1.15}
+.doc .upd{color:var(--tx3);font-size:14px;margin:8px 0 28px}
+.doc .lead{font-size:17px;color:var(--tx2);margin-bottom:24px}
+.doc h2{font-size:21px;letter-spacing:-.3px;margin:34px 0 10px;padding-top:6px}
+.doc h3{font-size:16.5px;margin:20px 0 6px}
+.doc p,.doc li{color:var(--tx2);font-size:15.5px}
+.doc p+p{margin-top:10px}
+.doc ul{padding-left:22px;margin:8px 0;display:flex;flex-direction:column;gap:6px}
+.doc .box{background:var(--bg1);border:1px solid var(--border);border-radius:var(--r);padding:16px 18px;margin:14px 0}
+.doc .toc{background:var(--bg1);border:1px solid var(--border);border-radius:var(--r);padding:14px 18px;margin-bottom:10px}
+.doc .toc ol{padding-left:20px;columns:2;column-gap:28px}
+.doc .toc li{font-size:14.5px;margin:3px 0}
+.doc .toc a{text-decoration:none}
+
+@media(max-width:720px){
+  .nav{display:none}
+  .login{margin-left:auto}
+  .hero{padding:48px 0 36px}
+  .hero p{font-size:16px}
+  section{padding:40px 0}
+  .apps{grid-template-columns:1fr}
+  .app{padding:20px}
+  footer nav{margin-left:0}
+  .doc .toc ol{columns:1}
+}
