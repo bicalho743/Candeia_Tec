@@ -1,0 +1,29 @@
+/* Apps nas lojas — matriz de uniformidade */
+.lj-wrap{background:var(--bg1);border:1px solid var(--border);border-radius:var(--r3);box-shadow:var(--shadow);overflow:auto;max-height:calc(100vh - 160px)}
+.lj-t{border-collapse:separate;border-spacing:0;font-size:12.5px;min-width:100%}
+.lj-t th,.lj-t td{border-bottom:1px solid var(--bg3);padding:7px 10px;text-align:left;vertical-align:top}
+.lj-t thead th{position:sticky;top:0;z-index:3;background:var(--bg2);font-size:12px;font-weight:800;color:var(--tx);border-bottom:1px solid var(--border);white-space:nowrap}
+.lj-t thead th small{display:block;font-weight:600;color:var(--tx3);font-size:10.5px}
+.lj-f{position:sticky;left:0;z-index:2;background:var(--bg1);min-width:230px;max-width:260px;font-weight:600;color:var(--tx2);border-right:1px solid var(--border)}
+.lj-t thead .lj-f{z-index:4;background:var(--bg2)}
+.lj-f small{font-weight:500;color:var(--tx3)}
+.lj-app{min-width:170px}
+.lj-sec th{position:sticky;left:0;background:var(--bg2);font-size:10.5px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--acc);padding-top:12px}
+.lj-loja{display:inline-block;font-size:9.5px;font-weight:800;padding:1px 6px;border-radius:5px;margin-right:6px;vertical-align:1px;font-family:var(--mono)}
+.lj-loja.lj-play{background:#E8F5E9;color:#1B7F3B}.lj-loja.lj-apple{background:#ECEFF3;color:#334155}.lj-loja.lj-geral{background:var(--acc-bg);color:var(--acc2,var(--acc))}
+.lj-c{max-width:230px;overflow:hidden;text-overflow:ellipsis;cursor:help}
+.lj-c .lj-v,.lj-c a{word-break:break-word;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.lj-c a{color:var(--acc2,var(--acc));text-decoration:none}.lj-c a:hover{text-decoration:underline}
+.lj-ic{float:left;width:16px;height:16px;border-radius:5px;margin:1px 6px 0 0;font-size:10px;font-weight:900;display:inline-flex;align-items:center;justify-content:center}
+.lj-ok .lj-ic{background:var(--green-bg);color:var(--green-tx)}
+.lj-warn{background:color-mix(in srgb,var(--amber-bg) 55%,transparent)}.lj-warn .lj-ic{background:var(--amber);color:#fff}
+.lj-falta{background:color-mix(in srgb,var(--red-bg) 55%,transparent)}.lj-falta .lj-ic{background:var(--red);color:#fff}
+.lj-vazio .lj-ic{display:none}
+.lj-na{color:var(--tx3)}.lj-na .lj-ic{background:transparent;color:var(--tx3)}
+.lj-esp{display:block;clear:both;font-size:10.5px;color:var(--tx3);font-family:var(--mono);margin-top:3px;word-break:break-all}
+.lj-leg{display:flex;gap:10px;align-items:center;font-size:12px;color:var(--tx3);margin-left:auto;flex-wrap:wrap}
+.lj-leg i{font-style:normal;display:inline-flex;width:16px;height:16px;border-radius:5px;align-items:center;justify-content:center;font-size:10px;font-weight:900;margin-right:3px}
+.lj-leg .lj-ok{background:var(--green-bg);color:var(--green-tx)}.lj-leg .lj-warn{background:var(--amber);color:#fff}.lj-leg .lj-falta{background:var(--red);color:#fff}.lj-leg .lj-na{background:var(--bg3)}
+.lj-h3{font-size:15px;font-weight:800;margin:26px 0 10px}
+.lj-miss{color:var(--red-tx);font-weight:700}
+@media(max-width:700px){.lj-f{min-width:150px}.lj-app{min-width:140px}.lj-leg{margin-left:0}}

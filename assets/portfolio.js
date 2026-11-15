@@ -108,7 +108,7 @@ function pfMigrate3(P){
 
 /* v4 — 05/11/2026: Coruja Labs passa a se chamar Candeia Tec */
 function pfMigrate4(P){
-  if((P.seedVersion||1) >= 4) return false;
+  if((P.seedVersion||1) >= 4) return pfMigrate5(P);
   if(P.holding){
     if(!P.holding.nome || /coruja/i.test(P.holding.nome)) P.holding.nome = 'Candeia Tec';
     P.holding.nomeFuturo = '';
@@ -117,6 +117,25 @@ function pfMigrate4(P){
   const apps = (P.marcas||[]).find(m=>m.id==='apps'); if(apps) apps.desc = 'Aplicativos e SaaS publicados pela Candeia Tec';
   (P.produtos||[]).forEach(p=>{ ['acao','nota'].forEach(k=>{ if(typeof p[k]==='string') p[k]=p[k].replace(/Coruja Labs/g,'Candeia Tec'); }); });
   P.seedVersion = 4;
+  pfMigrate5(P);
+  return true;
+}
+
+/* v5 — 15/11/2026: alinhado com a planilha STATUS_APLICATIVOS e o catálogo apps/catalogo.json.
+   Contrato Fácil, Etanol ou Gasolina? e Calculadora de Combustível não serão construídos. */
+function pfMigrate5(P){
+  if((P.seedVersion||1) >= 5) return false;
+  P.produtos = (P.produtos||[]).filter(p=>!['mp7','mp8','mp9'].includes(p.id));
+  const prod = id => (P.produtos||[]).find(x=>x.id===id);
+  const p3 = prod('mp3');
+  if(p3){ p3.nome='Meu Studio em Dia'; p3.dominio='meustudioemdia.com.br'; p3.site='meustudioemdia.com.br'; p3.email='meustudioemdia@gmail.com'; p3.emailPub='contato@meustudioemdia.com.br'; p3.instagram='@meustudioemdia'; }
+  const p1 = prod('mp1');
+  if(p1){ p1.dominio='minhadiariaemdia.com.br'; p1.site='minhadiariaemdia.com.br'; }
+  const p4 = prod('mp4');
+  if(p4){ p4.site=p4.site||'enxovalemdia.com.br'; p4.email=p4.email||'enxovalemdia@gmail.com'; p4.instagram=p4.instagram||'@enxovalemdia'; }
+  const p6 = prod('mp6');
+  if(p6){ p6.email=p6.email||'plannerorganiza.app@gmail.com'; p6.emailPub='contato@plannerorganiza.com.br'; p6.instagram=p6.instagram||'@plannerorganiza'; }
+  P.seedVersion = 5;
   return true;
 }
 function pfP(){ return D.portfolio; }

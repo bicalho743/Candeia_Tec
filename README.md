@@ -26,6 +26,13 @@ Módulo de coleta e visualização de métricas de redes sociais via [Windsor.ai
 | `/privacidade/` | Política de privacidade (LGPD), usada também nas lojas de apps |
 | `/termos/` | Termos de uso |
 | `/hub/` | Hub interno (login Google) — botão **Entrar** no topo do site |
+| `/hub/` → **Apps nas lojas** | Matriz de uniformidade dos apps (Google Play e App Store), lida de `apps/catalogo.json` |
+
+### Apps nas lojas (`apps/`)
+
+- `apps/catalogo.json`: fonte única dos dados de cada app nas lojas (sem senhas: o repositório é público)
+- `apps/PADRAO.md`: padrão Candeia Tec e checklist de publicação
+- `apps/STATUS_APLICATIVOS.xlsx`: planilha gerada com `python apps/gerar_planilha.py`
 
 ## Estrutura
 
