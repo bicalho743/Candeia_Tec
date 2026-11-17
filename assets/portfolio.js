@@ -68,7 +68,7 @@ function pfMigrate(P){
 
   // Frei Miguel
   setP('mp12', {alerta:'PDFs no histórico do repositório público', emailPub:'corujalabs.dev@gmail.com',
-    acao:'Tornar o repositório privado; renomear o produto no Kiwify para "Diário do Despertar"', nota:'Landing corrigida em 05/11/2026: sem contador, sem 131k, depoimentos ocultos, personagem identificado, privacidade e termos. Kiwify no CPF do Solano.'},
+    acao:'Tornar o repositório privado; renomear o produto no Kiwify para "Diário do Despertar"', nota:'Landing corrigida em 05/11/2026: sem contador, sem 131k, depoimentos ocultos, personagem identificado, privacidade e termos. Kiwify em conta pessoal do titular.'},
     {priv:'f', emailDom:'na'});
 
   // Casa em Ordem é produto da Tâmara (domínio Vida em Método)
