@@ -124,7 +124,7 @@ function pfMigrate4(P){
 /* v5 — 15/11/2026: alinhado com a planilha STATUS_APLICATIVOS e o catálogo apps/catalogo.json.
    Contrato Fácil, Etanol ou Gasolina? e Calculadora de Combustível não serão construídos. */
 function pfMigrate5(P){
-  if((P.seedVersion||1) >= 5) return false;
+  if((P.seedVersion||1) >= 5) return pfMigrate6(P);
   P.produtos = (P.produtos||[]).filter(p=>!['mp7','mp8','mp9'].includes(p.id));
   const prod = id => (P.produtos||[]).find(x=>x.id===id);
   const p3 = prod('mp3');
@@ -136,6 +136,26 @@ function pfMigrate5(P){
   const p6 = prod('mp6');
   if(p6){ p6.email=p6.email||'plannerorganiza.app@gmail.com'; p6.emailPub='contato@plannerorganiza.com.br'; p6.instagram=p6.instagram||'@plannerorganiza'; }
   P.seedVersion = 5;
+  pfMigrate6(P);
+  return true;
+}
+
+/* v6 — 17/11/2026: Enxoval em Dia sai de "ideia": em teste no TestFlight (App Store) e no teste interno (Google Play).
+   Fonte dos detalhes: apps/catalogo.json. */
+function pfMigrate6(P){
+  if((P.seedVersion||1) >= 6) return false;
+  const p4 = (P.produtos||[]).find(x=>x.id==='mp4');
+  if(p4){
+    p4.status='teste'; if(p4.alerta==='Nome em definição') p4.alerta='';
+    p4.pacote='br.com.enxovalemdia.app'; p4.dominio='enxovalemdia.com.br'; p4.site='enxovalemdia.com.br';
+    p4.emailPub='contato@enxovalemdia.com.br'; p4.instagram=p4.instagram||'@enxovalemdia';
+    p4.repo='github.com/bicalho743/meu-enxoval-em-dia';
+    p4.acao='Gerar o build final (ícones 3D, câmera e traduções), publicar a página /suporte e enviar à revisão (iOS) e ao teste fechado (Android)';
+    p4.nota='Site no ar. TestFlight (build 5) e teste interno do Play (build 3) em andamento. Instagram @enxovalemdia.';
+    if(!p4.check) p4.check = pfCheck();
+    Object.assign(p4.check, {comBr:'f', landing:'f', priv:'f'});
+  }
+  P.seedVersion = 6;
   return true;
 }
 function pfP(){ return D.portfolio; }
