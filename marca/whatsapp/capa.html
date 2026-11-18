@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<!-- Capa do WhatsApp Business da Candeia Tec — 1920×1080 (16:9).
+     O WhatsApp mostra a capa numa faixa ~2:1 (corta ~60 px em cima e embaixo)
+     e a foto do perfil cobre o centro de baixo: essa área fica livre.
+     Gerar PNG: node marca/whatsapp/gerar.js -->
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1920px;height:1080px;overflow:hidden}
+body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;color:#1F1A14;position:relative;
+  background:
+    radial-gradient(900px 520px at 50% 18%,rgba(255,190,95,.38),transparent 65%),
+    radial-gradient(700px 500px at 0% 100%,rgba(234,162,60,.14),transparent 70%),
+    radial-gradient(700px 500px at 100% 100%,rgba(234,162,60,.14),transparent 70%),
+    linear-gradient(180deg,#FFFAF1 0%,#F8F1E4 100%)}
+/* trilhas de circuito douradas, como no ícone */
+.traces{position:absolute;inset:0;opacity:.55}
+/* faixa visível segura: y 60..1020 */
+.top{position:absolute;left:0;right:0;top:92px;text-align:center}
+.brand{display:inline-flex;align-items:center;gap:26px}
+.brand img{width:120px;height:120px;border-radius:30px;box-shadow:0 18px 40px -16px rgba(60,40,10,.55),0 0 60px -10px rgba(234,162,60,.55)}
+.brand b{font-size:96px;font-weight:800;letter-spacing:-3px;line-height:1}
+.brand b span{background:linear-gradient(90deg,#D98A1E,#A8661E);-webkit-background-clip:text;background-clip:text;color:transparent}
+.tag{margin-top:22px;font-size:34px;font-weight:600;color:#5C5346;letter-spacing:-.3px}
+.apps{position:absolute;left:0;right:0;top:372px;display:flex;justify-content:center;gap:14px}
+.app{width:244px;text-align:center;white-space:nowrap}
+.ic{width:118px;height:118px;margin:0 auto 14px;border-radius:32px;display:flex;align-items:center;justify-content:center;color:#fff;
+  box-shadow:0 16px 30px -14px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.25)}
+.ic svg{width:58px;height:58px}
+.app span{display:block;font-size:27px;font-weight:700;line-height:1.2;color:#3A3227}
+/* cantos de baixo, fora da foto do perfil */
+.corner{position:absolute;bottom:96px;font-size:30px;font-weight:700;color:#5C5346;display:flex;align-items:center;gap:14px}
+.corner.l{left:110px}.corner.r{right:110px}
+.corner i{display:inline-flex;width:54px;height:54px;border-radius:16px;align-items:center;justify-content:center;background:rgba(212,137,28,.14);color:#9C5F08;font-style:normal}
+.corner i svg{width:28px;height:28px}
+</style>
+</head>
+<body>
+<svg class="traces" viewBox="0 0 1920 1080" fill="none" stroke="#D9B46A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M0 250 H170 V330 H300"/><path d="M0 420 H120"/><path d="M1920 250 H1750 V330 H1620"/><path d="M1920 420 H1800"/>
+  <path d="M60 760 V680 H200"/><path d="M1860 760 V680 H1720"/>
+  <g fill="#E2BE74" stroke="none"><circle cx="300" cy="330" r="7"/><circle cx="120" cy="420" r="6"/><circle cx="1620" cy="330" r="7"/><circle cx="1800" cy="420" r="6"/><circle cx="200" cy="680" r="6"/><circle cx="1720" cy="680" r="6"/></g>
+</svg>
+
+<div class="top">
+  <div class="brand"><img src="../../assets/candeia-tec-logo.svg" alt=""><b>Candeia <span>Tec</span></b></div>
+  <div class="tag">Atendimento dos nossos aplicativos</div>
+</div>
+
+<div class="apps">
+  <div class="app"><div class="ic" style="background:linear-gradient(135deg,#EC4899,#BE185D)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><path d="M8 15l2.5 2.5L16 13"/></svg></div><span>Meu Studio em Dia</span></div>
+  <div class="app"><div class="ic" style="background:linear-gradient(135deg,#4F6EF7,#3B4BC8)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div><span>Planner Organiza</span></div>
+  <div class="app"><div class="ic" style="background:linear-gradient(135deg,#14B8A6,#0F766E)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11a3 3 0 106 0 3 3 0 00-6 0z"/><path d="M4 21v-1a6 6 0 0112 0v1"/><path d="M17 4h4v4"/><path d="M21 4l-5 5"/></svg></div><span>Enxoval em Dia</span></div>
+  <div class="app"><div class="ic" style="background:linear-gradient(135deg,#F59E0B,#D97706)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg></div><span>MultiplicaMente</span></div>
+  <div class="app"><div class="ic" style="background:linear-gradient(135deg,#22C55E,#15803D)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/><line x1="6" y1="15" x2="10" y2="15"/></svg></div><span>Agenda MEI</span></div>
+</div>
+
+<div class="corner l"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 01-12.6 7.3L3 21l2.2-5.4A8.5 8.5 0 1121 11.5z"/></svg></i>Suporte e dúvidas</div>
+<div class="corner r">candeiatec.com.br<i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg></i></div>
+</body>
+</html>
