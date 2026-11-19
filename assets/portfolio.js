@@ -12,7 +12,7 @@ const PF_STATUS = {
 const PF_TIPOS = ['App','App + SaaS','SaaS B2B','Infoproduto','Serviço','Persona de conteúdo'];
 const PF_CONTACT_FIELDS = [
   ['email','E-mail operacional','Gmail que recebe tudo'],
-  ['emailPub','E-mail público','contato@dominio — vai na ficha do Play e no site'],
+  ['emailPub','E-mail público','apps: contato@candeiatec.com.br — vai na ficha das lojas e no site'],
   ['instagram','Instagram','@usuario'],
   ['whatsapp','WhatsApp','(31) 9…'],
   ['dominio','Domínio','produto.com.br'],
@@ -124,7 +124,7 @@ function pfMigrate4(P){
 /* v5 — 15/11/2026: alinhado com a planilha STATUS_APLICATIVOS e o catálogo apps/catalogo.json.
    Contrato Fácil, Etanol ou Gasolina? e Calculadora de Combustível não serão construídos. */
 function pfMigrate5(P){
-  if((P.seedVersion||1) >= 5) return false;
+  if((P.seedVersion||1) >= 5) return pfMigrate6(P);
   P.produtos = (P.produtos||[]).filter(p=>!['mp7','mp8','mp9'].includes(p.id));
   const prod = id => (P.produtos||[]).find(x=>x.id===id);
   const p3 = prod('mp3');
@@ -136,6 +136,15 @@ function pfMigrate5(P){
   const p6 = prod('mp6');
   if(p6){ p6.email=p6.email||'plannerorganiza.app@gmail.com'; p6.emailPub='contato@plannerorganiza.com.br'; p6.instagram=p6.instagram||'@plannerorganiza'; }
   P.seedVersion = 5;
+  pfMigrate6(P);
+  return true;
+}
+
+/* v6 — 19/11/2026: todos os apps usam contato@candeiatec.com.br como e-mail público */
+function pfMigrate6(P){
+  if((P.seedVersion||1) >= 6) return false;
+  (P.produtos||[]).forEach(p=>{ if(p.marca==='apps') p.emailPub='contato@candeiatec.com.br'; });
+  P.seedVersion = 6;
   return true;
 }
 function pfP(){ return D.portfolio; }

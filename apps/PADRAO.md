@@ -18,7 +18,7 @@ Convenção de preenchimento: campo vazio ou `xxxx` = sem informação (pendente
 |---|---|
 | Copyright | `© 2026 Candeia Tec` (com o símbolo ©, não @; atualizar o ano a cada versão nova) |
 | Desenvolvedor exibido nas lojas | **Solano Bicalho** hoje (conta pessoal). Passa a ser **Candeia Tec** quando houver conta de organização (CNPJ + D-U-N-S) e os apps forem transferidos |
-| E-mail de suporte (público) | `contato@<domínio do app>`, redirecionando para uma caixa central. Os Gmail de cada app ficam só para login |
+| E-mail de suporte (público) | **`contato@candeiatec.com.br` em todos os apps** (decidido em 19/11/2026). Os Gmail de cada app ficam só para login, nunca publicados |
 | Política de privacidade | `https://<domínio>/privacidade/` |
 | Termos de uso | `https://<domínio>/termos/` |
 | Excluir conta | `https://<domínio>/excluir-conta/` (todo app com conta) |
