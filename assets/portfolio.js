@@ -67,12 +67,12 @@ function pfMigrate(P){
   add({id:'c26', site:'casa_em_ordem.vidaemmetodo.com.br', pag:'Preço', pri:'Média', txt:'Preço de referência "De R$ 97,00"', fix:'Manter só se o kit já foi vendido por R$ 97 (CDC)', arquivo:'index.html, quizzes', ok:false});
 
   // Frei Miguel
-  setP('mp12', {alerta:'PDFs no histórico do repositório público', emailPub:'corujalabs.dev@gmail.com',
+  setP('mp12', {alerta:'PDFs no histórico do repositório público', emailPub:'candeiatec.app@gmail.com',
     acao:'Tornar o repositório privado; renomear o produto no Kiwify para "Diário do Despertar"', nota:'Landing corrigida em 05/11/2026: sem contador, sem 131k, depoimentos ocultos, personagem identificado, privacidade e termos. Kiwify no CPF do Solano.'},
     {priv:'f', emailDom:'na'});
 
   // Casa em Ordem é produto da Tâmara (domínio Vida em Método)
-  setP('mp14', {nome:'Casa em Ordem (kit)', marca:'tamara', alerta:'Área do comprador sem login', emailPub:'corujalabs.dev@gmail.com',
+  setP('mp14', {nome:'Casa em Ordem (kit)', marca:'tamara', alerta:'Área do comprador sem login', emailPub:'candeiatec.app@gmail.com',
     acao:'Mover entrega para a área de membros da Kiwify; confirmar se "De R$ 97" é preço real', nota:'Landing R$ 49,90 (JuDImie). Quiz /quiz1 R$ 29,70 (FOqNutF). Domínio vidaemmetodo.com.br.'},
     {priv:'f', landing:'f'});
   const k15=kw('k15'); if(k15) k15.marca='tamara';
