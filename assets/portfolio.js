@@ -67,7 +67,7 @@ function pfMigrate(P){
   add({id:'c26', site:'casa_em_ordem.vidaemmetodo.com.br', pag:'Preço', pri:'Média', txt:'Preço de referência "De R$ 97,00"', fix:'Manter só se o kit já foi vendido por R$ 97 (CDC)', arquivo:'index.html, quizzes', ok:false});
 
   // Frei Miguel
-  setP('mp12', {alerta:'PDFs no histórico do repositório público', emailPub:'candeiatec.app@gmail.com',
+  setP('mp12', {alerta:'PDFs no histórico do repositório público', emailPub:'freimiguel@gmail.com',
     acao:'Tornar o repositório privado; renomear o produto no Kiwify para "Diário do Despertar"', nota:'Landing corrigida em 05/11/2026: sem contador, sem 131k, depoimentos ocultos, personagem identificado, privacidade e termos. Kiwify no CPF do Solano.'},
     {priv:'f', emailDom:'na'});
 
@@ -142,9 +142,18 @@ function pfMigrate5(P){
 
 /* v6 — 19/11/2026: todos os apps usam contato@candeiatec.com.br como e-mail público */
 function pfMigrate6(P){
-  if((P.seedVersion||1) >= 6) return false;
+  if((P.seedVersion||1) >= 6) return pfMigrate7(P);
   (P.produtos||[]).forEach(p=>{ if(p.marca==='apps') p.emailPub='contato@candeiatec.com.br'; });
   P.seedVersion = 6;
+  pfMigrate7(P);
+  return true;
+}
+
+/* v7 — 20/11/2026: e-mail público do Frei Miguel Lucero */
+function pfMigrate7(P){
+  if((P.seedVersion||1) >= 7) return false;
+  const p = (P.produtos||[]).find(x=>x.id==='mp12'); if(p) p.emailPub='freimiguel@gmail.com';
+  P.seedVersion = 7;
   return true;
 }
 function pfP(){ return D.portfolio; }

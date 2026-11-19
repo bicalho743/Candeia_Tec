@@ -350,7 +350,7 @@
   "marcas": [
     {"nome": "Candeia Tec", "papel": "Empresa (marca guarda-chuva)", "site": "https://candeiatec.com.br/", "privacidade": "https://candeiatec.com.br/privacidade/", "termos": "https://candeiatec.com.br/termos/", "email": "contato@candeiatec.com.br", "instagram": "", "obs": "Antiga Coruja Labs"},
     {"nome": "Tâmara Cavalcante", "papel": "Organização residencial, ebooks e cursos", "site": "https://tamaracavalcante.com.br/", "privacidade": "https://tamaracavalcante.com.br/privacidade.html", "termos": "", "email": "", "instagram": "@tamaraorganiza", "obs": ""},
-    {"nome": "Frei Miguel Lucero", "papel": "Conteúdo e infoprodutos devocionais", "site": "https://freimiguellucero.com.br/", "privacidade": "", "termos": "", "email": "", "instagram": "https://www.instagram.com/freimiguellucero/", "obs": ""},
+    {"nome": "Frei Miguel Lucero", "papel": "Conteúdo e infoprodutos devocionais", "site": "https://freimiguellucero.com.br/", "privacidade": "https://freimiguellucero.com.br/privacidade.html", "termos": "https://freimiguellucero.com.br/termos.html", "email": "freimiguel@gmail.com", "instagram": "https://www.instagram.com/freimiguellucero/", "obs": ""},
     {"nome": "Conselhos Padre Miguel", "papel": "Perfil de conteúdo", "site": "", "privacidade": "", "termos": "", "email": "", "instagram": "https://www.instagram.com/conselhospadremiguel/", "obs": ""},
     {"nome": "Vida em Método", "papel": "Casa em Ordem e quizzes (Tâmara)", "site": "https://vidaemmetodo.com.br/", "privacidade": "", "termos": "", "email": "", "instagram": "", "obs": ""}
   ]
