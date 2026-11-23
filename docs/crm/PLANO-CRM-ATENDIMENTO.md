@@ -178,3 +178,33 @@ Todos param assim que chega "compra aprovada". Só para quem deu consentimento: 
 - [ ] Ficha de produtos: Planner Organiza, Meu Studio em Dia, MultiplicaMente (descrição, preço, link, garantia).
 - [ ] Em qual conta do Supabase está o projeto `cxdbrmjrwusgzikfyugf` ("Receptor de vendas"), e se é o projeto pausado do bot da Tâmara.
 - [ ] Aprovar este plano (ou trocar a base para o Frappe CRM).
+
+---
+
+## 6. Candeia CRM: criado em 23/11/2026
+
+- Supabase, organização "Solano Bicalho" (plano Pro), projeto **Candeia CRM** (`zottntimhhsgwsgtvguz`), região São Paulo (sa-east-1).
+- Acesso: só pela chave de serviço (n8n, bot, agentes). Todas as tabelas têm RLS ligado e nenhuma regra pública. A chave fica no cofre de cada serviço, nunca no repositório (ele é público).
+
+### Tabelas
+| Tabela | Para quê |
+|---|---|
+| `marcas` | `candeia`, `vida`, `frei` (WhatsApp geral 5531987428641) e `tamara` (número próprio 5531992041112) |
+| `produtos` | Ficha de cada produto: preço, link, onde acessa, garantia, upsell, perguntas frequentes, ids da Kiwify |
+| `contatos` | Um registro por pessoa. Telefone só com dígitos e 55; e-mail em minúsculo. Etapas: lead_novo, em_conversa, checkout_iniciado, pagamento_pendente, cliente, recorrente, perdido. Guarda o consentimento de WhatsApp e de e-mail e o "não perturbe" |
+| `eventos` | Tudo o que aconteceu: lead de formulário, mensagem, carrinho, Pix, boleto, compra, reembolso, teste, assinatura. O mesmo pedido não entra duas vezes (fonte + pedido + tipo) |
+| `mensagens` | Histórico de WhatsApp, e-mail e Instagram (quem escreveu: cliente, bot, humano ou automação) |
+| `tarefas` | Casos para humano, com prazo e status |
+| `envios_programados` | Fila dos recuperadores e sequências (fluxo, canal, horário, status) |
+| `vw_leads` | Visão pronta para o painel e a planilha: contato + último evento + tarefas abertas + total comprado |
+
+### Regras automáticas (no banco)
+- `upsert_contato(telefone, email, nome, marca, origem, whatsapp_optin, email_optin, utm)`: cria ou atualiza o contato. Se o telefone e o e-mail estavam em contatos diferentes, junta os dois (`mesclar_contatos`) com todo o histórico. Uso pelo n8n: `POST /rest/v1/rpc/upsert_contato`.
+- Cada novo evento atualiza a etapa do contato. "Compra aprovada", "reembolso" ou "chargeback" cancelam na hora os lembretes pendentes de Pix, boleto e carrinho.
+- Testado em 23/11 com um contato fictício (apagado depois): a junção, a mudança de etapa e o cancelamento do lembrete funcionaram.
+
+### Próximos passos técnicos
+1. n8n: gravar no CRM os webhooks da Kiwify (todos os produtos e eventos) e os formulários dos sites.
+2. n8n: rotina a cada 5 min que envia os `envios_programados` vencidos (e-mail primeiro).
+3. Aba "Leads" na planilha do time, espelhando `vw_leads`.
+4. Bot de WhatsApp lendo e gravando no CRM.
