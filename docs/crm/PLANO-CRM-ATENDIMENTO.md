@@ -255,6 +255,13 @@ Todos param assim que chega "compra aprovada". Só para quem deu consentimento: 
   - Ainda faltam descrição, link, garantia e perguntas frequentes de cada um, para o bot.
 - O CRM está vazio (0 contatos) e pronto para receber as vendas reais.
 
+### WhatsApp oficial: andamento (23/11, noite)
+- Decisão: seguir **sem nova verificação** e usar o parceiro **YCloud** (plano Free, sem mensalidade; mensagens pelo preço da Meta, sem acréscimo), por ter coexistência (número segue no app WhatsApp Business do celular).
+- Os dois números já estão na empresa **tamaraorganiza** (verificada pela Meta, até 2.000 conversas novas/dia): conta "Candeia Tec" (+55 31 98742-8641, WABA `1007475751983855`) e conta "Tâmara Cavalcante" (+55 31 99204-1112). Portfólio `3278699752154206`. Configuração de pagamento da Meta aparece como "Índia": revisar a moeda.
+- Conta YCloud criada (e-mail plannerorganiza.app, empresa "Candeia Tec", Company ID `6b0486f2f871f671c07b7449`).
+- Coexistência do 31 98742-8641: na Meta concluiu (YCloud é parceiro com acesso total da conta Candeia Tec), mas o número **não apareceu no painel do YCloud**. Ao refazer, a Meta devolve "(#100) WABA ... is already using a payment method". Aberto o chamado **#3912** no suporte do YCloud (ycloud.com/resource/t/3912) pedindo para terminar a ligação.
+- Atenção para próximas tentativas: não recarregar a aba do YCloud enquanto a janela da Meta estiver aberta; entrar pelo **Facebook** (o botão do WhatsApp Business recusa número que já pertence a uma empresa) e escolher a **tamaraorganiza**.
+
 ### Pendente
 - [x] Airtable: token novo colado na credencial do n8n (feito em 23/11).
 - [x] Cadastrar na Kiwify o webhook `kiwify-crm` e apagar o "TEST-Kiwify-Webhook" (feito em 23/11).
@@ -263,6 +270,6 @@ Todos param assim que chega "compra aprovada". Só para quem deu consentimento: 
 - [ ] WhatsApp: o Solano começa a verificação da empresa no Gerenciador de Negócios da Meta.
 - [ ] Tela "Leads" no Hub (fase 2), depois que as vendas reais estiverem entrando.
 - [ ] Confirmar se o 31 99204-1112 (Tâmara) está no app WhatsApp Business. É requisito da coexistência; hoje ele está ligado à Z-API, que será desligada na migração.
-- [ ] Escolher o parceiro de coexistência (confirmar preço e se aceita os dois números).
+- [x] Parceiro de coexistência: YCloud (plano Free). Falta o suporte terminar a ligação do 31 98742-8641 (chamado #3912); depois ligar o 31 99204-1112.
 - [ ] Lembretes por e-mail (Pix, boleto, carrinho): escolher o serviço de envio (Resend ou SES) e autenticar os domínios.
 - [ ] Ligar a conferência da assinatura da Kiwify antes de qualquer mensagem automática para carrinho abandonado.
