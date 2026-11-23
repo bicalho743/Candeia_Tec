@@ -21,7 +21,17 @@ Quem executa cada passo está indicado. Nada aqui envia mensagem a cliente sem a
 ### Contas e ferramentas
 
 - **n8n no Railway** já roda: recebe webhooks da Kiwify (compra → Meta, compra → RevenueCat) e os formulários do site da Tâmara. **É a "cola" que já existe e vamos reaproveitar.**
-- **Supabase**: os dois projetos visíveis (Meu Studio em Dia, Meu Enxoval em Dia) são bancos dos apps. O "Receptor de vendas" da Kiwify aponta para um Supabase que não aparece nesta conta. Precisa descobrir qual é.
+- **Supabase**: os dois projetos visíveis (Meu Studio em Dia, Meu Enxoval em Dia) são bancos dos apps. O Supabase do bot da Tâmara está **pausado**.
+- **Webhooks da Kiwify** (levantamento de 23/11):
+
+  | Nome | Destino | Produtos | Situação |
+  |---|---|---|---|
+  | Meta Purchase - Casa em Ordem | n8n `/webhook/kiwify-purchase` | Casa em Ordem | Ativo |
+  | RevenueCat Acesso - Casa em Ordem | n8n `/webhook/kiwify-revenuecat` | Casa em Ordem | Ativo; não guarda vendas em banco |
+  | Receptor de vendas da Kiwify | Supabase `cxdbrmjrwusgzikfyugf` (função `kiwify-webhook`) | Todos | Criado em 05/11 por sessão desconhecida. Nenhum conector tem acesso. Se for o projeto pausado, está perdendo os eventos. |
+  | TEST-Kiwify-Webhook | n8n `/webhook/kiwify-test` | Todos | Teste: apagar |
+
+  Hoje **nenhuma venda fica gravada num banco seu**. O faturamento só existe no painel da Kiwify.
 - **Planilha do time** (Candeia Tec): a aba "Atendimento" existe, mas só tem o cabeçalho (Data, Canal, Dúvida/objeção, Produto, Resolvido?, Passado ao dono?, Observações).
 - **Planilha "Leads WhatsApp - Tâmara Cavalcante"**:
   - A aba "Página1" registra quem mandou mensagem no WhatsApp, mas sem nome nem status.
@@ -96,8 +106,12 @@ Alternativa se quiser telas de CRM prontas: subir o Frappe CRM (repositório `CR
 
 ### 3.3 WhatsApp oficial
 1. **Solano, no site da Meta:** verificar a empresa no Gerenciador de Negócios, criar o app WhatsApp e cadastrar o número (ou números). Claude Code passa o passo a passo.
-2. **Decidir os números:** um por marca ou um só para tudo. Recomendação: o número da Tâmara (atendimento de serviço) separado do número de suporte da Candeia Tec (apps e infoprodutos).
-3. Se o número da Tâmara for migrado da Z-API, ele sai do celular comum. Verificar no cadastro se a Meta oferece a opção de usar o mesmo número no app WhatsApp Business **e** na API ("coexistência").
+2. **Número decidido (23/11): um número só, +55 31 98742-8641, para todas as marcas.** A Tâmara sai da Z-API.
+   - O bot descobre a marca pela mensagem pronta de cada link (por exemplo, "Olá! Vim do site da Tâmara"). Cada site ganha um link `wa.me/5531987428641?text=...` com o seu texto. Se não der para saber, o bot pergunta.
+   - Os links do site da Tâmara (hoje para 31 99204-1112) passam para o número novo.
+3. Ao entrar na API, o número sai do app comum do WhatsApp. Para um humano continuar respondendo:
+   - opção (a): "coexistência" da Meta (app WhatsApp Business e API no mesmo número; confirmar no cadastro se está disponível);
+   - opção (b): uma caixa de entrada (tela no Hub, ou Chatwoot/Frappe).
 4. Token e webhook ficam só no cofre do Railway, nunca no chat nem no repositório.
 - **Executa:** Claude Code (serviço e webhook). **Faz no site:** Solano.
 
@@ -158,9 +172,9 @@ Todos param assim que chega "compra aprovada". Só para quem deu consentimento: 
 7. **Tela de Leads no Hub** e relatório semanal.
 
 ## 5. Pendências do Solano
-- [ ] Qual número de WhatsApp para cada marca, e se o da Tâmara pode sair da Z-API.
+- [x] Número de WhatsApp: um só, 31 98742-8641; a Tâmara sai da Z-API.
 - [ ] Verificação da empresa no Gerenciador de Negócios da Meta.
 - [ ] Prazo de resposta humana (sugestão: 1 dia útil) e quem recebe os casos difíceis (sugestão: Telegram do Solano, como hoje).
 - [ ] Ficha de produtos: Planner Organiza, Meu Studio em Dia, MultiplicaMente (descrição, preço, link, garantia).
-- [ ] Qual Supabase recebe o "Receptor de vendas" da Kiwify.
+- [ ] Em qual conta do Supabase está o projeto `cxdbrmjrwusgzikfyugf` ("Receptor de vendas"), e se é o projeto pausado do bot da Tâmara.
 - [ ] Aprovar este plano (ou trocar a base para o Frappe CRM).
