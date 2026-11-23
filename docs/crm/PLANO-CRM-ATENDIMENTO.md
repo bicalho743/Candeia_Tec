@@ -244,7 +244,7 @@ Todos param assim que chega "compra aprovada". Só para quem deu consentimento: 
 - "CRM — Espelho da aba Leads" **religado** (publicado). A rodada manual e a automática seguinte rodaram sem erro, e a aba **Leads** preencheu.
 - Contato de teste (5531900000003 / teste.planilha@exemplo.com) apagado do CRM, junto com o histórico.
 - **Airtable:** a credencial "Airtable Personal Access Token account" também tinha perdido o token. O Solano criou um token novo no Airtable, "n8n Railway", só com acesso à base **Coruja CRM** (escopos data.records:read, data.records:write e schema.bases:read), e colou no n8n. A conexão foi testada e as tabelas da base aparecem. O token antigo "n8n Tamara Site" pode ser apagado no Airtable.
-- Credencial "Postgres account" também aparece como "Needs first setup". Ver se ainda é usada antes de refazer.
+- Credencial "Postgres account" também está quebrada ("Needs first setup"). Conferido em 23/11: só 4 fluxos **desligados** a usam ("My workflow", dois "Setup Tables" e "Tâmara — Conversa WhatsApp"). Nenhum fluxo ativo depende dela, por isso não foi refeita. Refazer só se algum desses fluxos voltar a ser usado.
 
 ### Kiwify ligada ao CRM (23/11, à tarde)
 - Webhook **"CRM — todos os eventos"** cadastrado na Kiwify (conta da Tâmara, CNPJ 40.278.995): URL `https://n8n-production-8a4b.up.railway.app/webhook/kiwify-crm`, todos os produtos, todos os 10 eventos (boleto, Pix, carrinho, compra recusada e aprovada, reembolso, chargeback e os 3 de assinatura).
