@@ -235,9 +235,33 @@ Todos param assim que chega "compra aprovada". Só para quem deu consentimento: 
   - "Temp — HTTP Proxy" **desligado** (deixava qualquer pessoa usar o servidor do n8n como intermediário).
 - Produto Casa em Ordem cadastrado na marca `tamara`.
 
+### Conserto da credencial do Google (23/11, à tarde)
+- A credencial "Google Sheets account" do n8n não abria mais ("Credentials could not be decrypted"). Foi refeita com um app OAuth próprio:
+  - Google Cloud, conta solanobicalho: projeto **n8n Candeia** (`n8n-candeia`), com Google Sheets API e Google Drive API ativas.
+  - Tela de consentimento: External, nome "n8n Candeia", **publicada ("Em produção")**, para a conexão não expirar em 7 dias. Página inicial, privacidade e termos apontam para candeiatec.com.br; domínio autorizado candeiatec.com.br.
+  - Cliente OAuth "n8n Railway" (Web application), com o redirect `https://n8n-production-8a4b.up.railway.app/rest/oauth2-credential/callback`.
+  - O Solano colou o Client ID e o Secret no n8n e autorizou com a conta dele. O nome continua "Google Sheets account". O Secret não fica em nenhum outro lugar.
+- "CRM — Espelho da aba Leads" **religado** (publicado). A rodada manual e a automática seguinte rodaram sem erro, e a aba **Leads** preencheu.
+- Contato de teste (5531900000003 / teste.planilha@exemplo.com) apagado do CRM, junto com o histórico.
+- **Airtable:** a credencial "Airtable Personal Access Token account" também perdeu o token (campo vazio, "Couldn't connect"). Não foi trocada: depende de um token novo, gerado pelo Solano no Airtable. Enquanto isso, os fluxos que gravam no Airtable (formulários da Tâmara) devem falhar nessa etapa. A gravação no CRM segue normal.
+- Credencial "Postgres account" também aparece como "Needs first setup". Ver se ainda é usada antes de refazer.
+
+### Kiwify ligada ao CRM (23/11, à tarde)
+- Webhook **"CRM — todos os eventos"** cadastrado na Kiwify (conta da Tâmara, CNPJ 40.278.995): URL `https://n8n-production-8a4b.up.railway.app/webhook/kiwify-crm`, todos os produtos, todos os 10 eventos (boleto, Pix, carrinho, compra recusada e aprovada, reembolso, chargeback e os 3 de assinatura).
+- "TEST-Kiwify-Webhook" apagado. Os outros três (Meta Purchase, RevenueCat e Receptor de vendas) não foram mexidos.
+- Tabela `produtos`: 11 produtos, todos com o id da Kiwify.
+  - `tamara`: Casa em Ordem, Quando Tudo Está no Lugar (Vol. 2), Caos Nunca Mais (Vol. 1), Empreender com Organização (Vol. 2), Organize, Valorize, Precifique (Vol. 3), Profissão Organizer (Vol. 1), Kit Profissional Organizer, Kit de Etiquetas Imprimíveis e Guia "Envolva a Família".
+  - `frei`: Extra Orações de Batalha e Caminhando com Deus.
+  - Ainda faltam descrição, link, garantia e perguntas frequentes de cada um, para o bot.
+- O CRM está vazio (0 contatos) e pronto para receber as vendas reais.
+
 ### Pendente
-- [ ] Cadastrar na Kiwify o webhook `https://n8n-production-8a4b.up.railway.app/webhook/kiwify-crm` (todos os produtos e eventos). Apagar o "TEST-Kiwify-Webhook".
-- [ ] Ids da Kiwify dos demais produtos na tabela `produtos`.
+- [ ] Airtable: gerar um token novo (escopos data.records:read, data.records:write, schema.bases:read) e colar na credencial do n8n.
+- [x] Cadastrar na Kiwify o webhook `kiwify-crm` e apagar o "TEST-Kiwify-Webhook" (feito em 23/11).
+- [x] Ids da Kiwify dos demais produtos na tabela `produtos` (feito em 23/11).
+- [ ] Conferir a primeira venda real que chegar pelo webhook novo (contato, evento e marca certos).
+- [ ] WhatsApp: o Solano começa a verificação da empresa no Gerenciador de Negócios da Meta.
+- [ ] Tela "Leads" no Hub (fase 2), depois que as vendas reais estiverem entrando.
 - [ ] Confirmar se o 31 99204-1112 (Tâmara) está no app WhatsApp Business. É requisito da coexistência; hoje ele está ligado à Z-API, que será desligada na migração.
 - [ ] Escolher o parceiro de coexistência (confirmar preço e se aceita os dois números).
 - [ ] Lembretes por e-mail (Pix, boleto, carrinho): escolher o serviço de envio (Resend ou SES) e autenticar os domínios.
