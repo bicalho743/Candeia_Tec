@@ -216,3 +216,29 @@ Todos param assim que chega "compra aprovada". Só para quem deu consentimento: 
 2. n8n: rotina a cada 5 min que envia os `envios_programados` vencidos (e-mail primeiro).
 3. Aba "Leads" na planilha do time, espelhando `vw_leads`.
 4. Bot de WhatsApp lendo e gravando no CRM.
+
+---
+
+## 7. Situação em 23/11/2026 (fim do dia)
+
+### Decisões do Solano
+- Número geral 31 98742-8641 (WhatsApp Business) para Candeia Tec, Vida em Método e Frei Miguel, **mantido também no celular** (coexistência, por um parceiro oficial da Meta).
+- Tâmara: número próprio 31 99204-1112. Casa em Ordem é da **Tâmara**, e os lembretes dele saem pelo número dela, desde que ela também mantenha o número no celular (coexistência).
+- CRM próprio no Supabase (plano Pro), sem Brevo.
+
+### Feito
+- Candeia CRM criado, com tabelas, regras e testes (seção 6).
+- n8n:
+  - "CRM — Kiwify (todos os produtos e eventos)": ativo e testado.
+  - "Tâmara — Contato do Site" e "Tâmara — Lista de Espera": passam a gravar também no CRM, em paralelo (se o CRM falhar, o Airtable e a planilha seguem normais).
+  - "CRM — Espelho da aba Leads" (id `yhggMM07Ofl6zLMU`): a cada 15 min reescreve a aba **Leads** da planilha do time a partir de `vw_leads`. **Não editar a aba à mão**: ela é apagada e reescrita.
+  - "Temp — HTTP Proxy" **desligado** (deixava qualquer pessoa usar o servidor do n8n como intermediário).
+- Produto Casa em Ordem cadastrado na marca `tamara`.
+
+### Pendente
+- [ ] Cadastrar na Kiwify o webhook `https://n8n-production-8a4b.up.railway.app/webhook/kiwify-crm` (todos os produtos e eventos). Apagar o "TEST-Kiwify-Webhook".
+- [ ] Ids da Kiwify dos demais produtos na tabela `produtos`.
+- [ ] Confirmar se o 31 99204-1112 (Tâmara) está no app WhatsApp Business. É requisito da coexistência; hoje ele está ligado à Z-API, que será desligada na migração.
+- [ ] Escolher o parceiro de coexistência (confirmar preço e se aceita os dois números).
+- [ ] Lembretes por e-mail (Pix, boleto, carrinho): escolher o serviço de envio (Resend ou SES) e autenticar os domínios.
+- [ ] Ligar a conferência da assinatura da Kiwify antes de qualquer mensagem automática para carrinho abandonado.
