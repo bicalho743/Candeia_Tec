@@ -204,11 +204,12 @@ Todos param assim que chega "compra aprovada". Só para quem deu consentimento: 
 - Testado em 23/11 com um contato fictício (apagado depois): a junção, a mudança de etapa e o cancelamento do lembrete funcionaram.
 
 ### Integração com a Kiwify (n8n)
-- Fluxo **"CRM — Kiwify (todos os produtos e eventos)"** (id `DMCkVjYUBHrmDvji`), criado **desligado** em 23/11. Endereço: `https://n8n-production-8a4b.up.railway.app/webhook/kiwify-crm`.
+- Fluxo **"CRM — Kiwify (todos os produtos e eventos)"** (id `DMCkVjYUBHrmDvji`), **ativo** desde 23/11. Testado com um pedido real (gravou contato e evento, marca certa) e com um pedido falso (recusado, nada gravado). Endereço: `https://n8n-production-8a4b.up.railway.app/webhook/kiwify-crm`.
 - Pedidos são conferidos na API da Kiwify antes de gravar. Avisos falsos não entram, e o link/código de Pix nunca é tirado do aviso.
 - Carrinho abandonado não tem como ser conferido: entra marcado `verificado: false`. **Nenhuma mensagem automática deve ser enviada para evento não verificado** até a conferência da assinatura da Kiwify estar ligada.
 - Função no CRM: `registrar_evento(...)`. Cria ou junta o contato, grava o evento sem duplicar e descobre a marca pelo id do produto na Kiwify (tabela `produtos`).
-- Falta: (1) credencial "Supabase API" do Candeia CRM no n8n (o Solano cadastra); (2) cadastrar na Kiwify o webhook `kiwify-crm` para todos os produtos e eventos (agente com acesso à Kiwify); (3) preencher os ids da Kiwify dos outros produtos na tabela `produtos`.
+- Credencial do CRM no n8n: "Supabase account" (tipo Supabase API), cadastrada pelo Solano.
+- Falta: (1) cadastrar na Kiwify o webhook `kiwify-crm` para todos os produtos e eventos (agente com acesso à Kiwify); (2) preencher os ids da Kiwify dos outros produtos na tabela `produtos`.
 
 ### Próximos passos técnicos
 1. n8n: formulários dos sites gravando no CRM.
