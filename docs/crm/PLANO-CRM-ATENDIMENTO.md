@@ -21,14 +21,14 @@ Quem executa cada passo está indicado. Nada aqui envia mensagem a cliente sem a
 ### Contas e ferramentas
 
 - **n8n no Railway** já roda: recebe webhooks da Kiwify (compra → Meta, compra → RevenueCat) e os formulários do site da Tâmara. **É a "cola" que já existe e vamos reaproveitar.**
-- **Supabase**: os dois projetos visíveis (Meu Studio em Dia, Meu Enxoval em Dia) são bancos dos apps. O Supabase do bot da Tâmara está **pausado**.
+- **Supabase**: os dois projetos visíveis (Meu Studio em Dia, Meu Enxoval em Dia) são bancos dos apps. Conta do Solano: `Tâmara_whatsapp_bot` e `Livro_caixa_Tamara` estão **pausados**; `Financeiro_Solano` está ativo (finanças pessoais + o esquema `validacao` das vendas).
 - **Webhooks da Kiwify** (levantamento de 23/11):
 
   | Nome | Destino | Produtos | Situação |
   |---|---|---|---|
   | Meta Purchase - Casa em Ordem | n8n `/webhook/kiwify-purchase` | Casa em Ordem | Ativo |
   | RevenueCat Acesso - Casa em Ordem | n8n `/webhook/kiwify-revenuecat` | Casa em Ordem | Ativo; não guarda vendas em banco |
-  | Receptor de vendas da Kiwify | Supabase `cxdbrmjrwusgzikfyugf` (função `kiwify-webhook`) | Todos | Criado em 05/11 por sessão desconhecida. Nenhum conector tem acesso. Se for o projeto pausado, está perdendo os eventos. |
+  | Receptor de vendas da Kiwify | Supabase **Financeiro_Solano** (`cxdbrmjrwusgzikfyugf`, ativo), função `kiwify-webhook` | Todos | Criado em 05/11. Confere a assinatura da Kiwify e grava em `validacao.vendas` só o pedido, o produto, os valores e as UTMs. O e-mail é guardado só como código (hash): **não serve como lista de contatos**. Até 23/11: só 2 vendas lançadas à mão, nenhuma vinda da Kiwify. |
   | TEST-Kiwify-Webhook | n8n `/webhook/kiwify-test` | Todos | Teste: apagar |
 
   Hoje **nenhuma venda fica gravada num banco seu**. O faturamento só existe no painel da Kiwify.
