@@ -243,7 +243,7 @@ Todos param assim que chega "compra aprovada". Só para quem deu consentimento: 
   - O Solano colou o Client ID e o Secret no n8n e autorizou com a conta dele. O nome continua "Google Sheets account". O Secret não fica em nenhum outro lugar.
 - "CRM — Espelho da aba Leads" **religado** (publicado). A rodada manual e a automática seguinte rodaram sem erro, e a aba **Leads** preencheu.
 - Contato de teste (5531900000003 / teste.planilha@exemplo.com) apagado do CRM, junto com o histórico.
-- **Airtable:** a credencial "Airtable Personal Access Token account" também perdeu o token (campo vazio, "Couldn't connect"). Não foi trocada: depende de um token novo, gerado pelo Solano no Airtable. Enquanto isso, os fluxos que gravam no Airtable (formulários da Tâmara) devem falhar nessa etapa. A gravação no CRM segue normal.
+- **Airtable:** a credencial "Airtable Personal Access Token account" também tinha perdido o token. O Solano criou um token novo no Airtable, "n8n Railway", só com acesso à base **Coruja CRM** (escopos data.records:read, data.records:write e schema.bases:read), e colou no n8n. A conexão foi testada e as tabelas da base aparecem. O token antigo "n8n Tamara Site" pode ser apagado no Airtable.
 - Credencial "Postgres account" também aparece como "Needs first setup". Ver se ainda é usada antes de refazer.
 
 ### Kiwify ligada ao CRM (23/11, à tarde)
@@ -256,7 +256,7 @@ Todos param assim que chega "compra aprovada". Só para quem deu consentimento: 
 - O CRM está vazio (0 contatos) e pronto para receber as vendas reais.
 
 ### Pendente
-- [ ] Airtable: gerar um token novo (escopos data.records:read, data.records:write, schema.bases:read) e colar na credencial do n8n.
+- [x] Airtable: token novo colado na credencial do n8n (feito em 23/11).
 - [x] Cadastrar na Kiwify o webhook `kiwify-crm` e apagar o "TEST-Kiwify-Webhook" (feito em 23/11).
 - [x] Ids da Kiwify dos demais produtos na tabela `produtos` (feito em 23/11).
 - [ ] Conferir a primeira venda real que chegar pelo webhook novo (contato, evento e marca certos).
