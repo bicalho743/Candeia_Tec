@@ -95,6 +95,34 @@ html,body{height:100%;background:var(--bg);color:var(--tx);font-family:var(--san
 .sv{font-size:30px;font-weight:800;letter-spacing:-.8px;line-height:1}
 .ss{font-size:13px;color:var(--tx3);margin-top:5px}
 
+/* LEADS (CRM) */
+.ld-pa{flex-wrap:wrap}
+.ld-in{background:var(--bg1);border:1.5px solid var(--border);border-radius:var(--r2);padding:8px 12px;font-size:13px;font-family:var(--sans);color:var(--tx);outline:none;min-width:0}
+#ld-busca{width:220px}
+.ld-card{background:var(--bg1);border:1px solid var(--border);border-radius:var(--r3);box-shadow:var(--shadow);overflow:hidden}
+.ld-wrap{overflow-x:auto}
+.ld-table{width:100%;border-collapse:collapse;font-size:13.5px}
+.ld-table th{text-align:left;font-size:11px;font-weight:700;color:var(--tx3);text-transform:uppercase;letter-spacing:.08em;font-family:var(--mono);padding:12px 14px;border-bottom:1px solid var(--border);background:var(--bg2);white-space:nowrap}
+.ld-table td{padding:11px 14px;border-bottom:1px solid var(--border);vertical-align:top}
+.ld-table tr:last-child td{border-bottom:none}
+.ld-num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.ld-nome{font-weight:700;color:var(--tx)}
+.ld-sub{font-size:12px;color:var(--tx3);word-break:break-all}
+.ld-pill{display:inline-block;font-size:11.5px;font-weight:700;padding:3px 9px;border-radius:20px;background:var(--bg3);color:var(--tx2);white-space:nowrap;margin:0 4px 3px 0}
+.ld-pill.e-cliente,.ld-pill.e-recorrente{background:var(--green-bg);color:var(--green-tx)}
+.ld-pill.e-pagamento_pendente,.ld-pill.e-checkout_iniciado{background:var(--amber-bg);color:var(--amber-tx)}
+.ld-pill.e-perdido{background:var(--red-bg);color:var(--red-tx)}
+.ld-pill.e-em_conversa{background:var(--blue-bg);color:var(--blue-tx)}
+.ld-pill.e-lead_novo{background:var(--purple-bg);color:var(--purple-tx)}
+.ld-vazio{padding:28px 18px;text-align:center;color:var(--tx3);font-size:14px}
+.ld-msg{padding:12px 16px;border-radius:var(--r2);background:var(--amber-bg);color:var(--amber-tx);font-size:14px;margin-bottom:16px}
+.ld-sect{font-size:12px;font-weight:700;color:var(--tx3);text-transform:uppercase;letter-spacing:.09em;font-family:var(--mono);margin:24px 0 12px}
+.ld-ev{padding:4px 18px}
+.ld-evr{display:flex;gap:12px;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--border);font-size:13.5px}
+.ld-evr:last-child{border-bottom:none}
+.ld-foot{font-size:12px;color:var(--tx3);margin-top:14px}
+@media(max-width:700px){#ld-busca{width:100%}.ld-pa{width:100%}.ld-pa .ld-in{flex:1 1 140px}}
+
 /* BADGES */
 .badge{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:600;padding:4px 10px;border-radius:20px}
 .badge::before{content:'';width:6px;height:6px;border-radius:50%;flex-shrink:0}
@@ -705,6 +733,10 @@ window.db   = firebase.firestore();
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
       <span>Dashboard</span>
     </div>
+    <div class="ni" onclick="go('leads')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+      <span>Leads (CRM)</span>
+    </div>
     <div class="ni" onclick="go('empresa')">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
       <span>Candeia Tec</span>
@@ -796,6 +828,28 @@ window.db   = firebase.firestore();
   <div class="pgrid" id="dash-pgrid"></div>
   <p style="font-size:12px;font-weight:700;color:var(--tx3);text-transform:uppercase;letter-spacing:.09em;font-family:var(--mono);margin:24px 0 14px">Atividade recente</p>
   <div class="fcard" style="padding:4px 0 0"><div class="lfeed" id="dash-log" style="padding:0 18px"></div></div>
+</div>
+
+<!-- LEADS (CRM) -->
+<div class="page" id="page-leads">
+  <div class="ph">
+    <div><div class="pt">Leads (CRM)</div><div class="ps">Contatos do Candeia CRM: Kiwify, sites e WhatsApp, por marca</div></div>
+    <div class="pa ld-pa">
+      <input id="ld-busca" type="search" placeholder="Buscar nome, e-mail ou telefone" oninput="renderLeads()" class="ld-in">
+      <select id="ld-marca" onchange="renderLeads()" class="ld-in"><option value="">Todas as marcas</option></select>
+      <select id="ld-etapa" onchange="renderLeads()" class="ld-in"><option value="">Todas as etapas</option></select>
+      <button class="btn btn-p btn-sm" onclick="loadLeads(true)">Atualizar</button>
+    </div>
+  </div>
+  <div class="stats" id="ld-stats"></div>
+  <div id="ld-msg" class="ld-msg" hidden></div>
+  <div class="ld-card"><div class="ld-wrap"><table class="ld-table">
+    <thead><tr><th>Contato</th><th>Marca</th><th>Etapa</th><th>Último evento</th><th class="ld-num">Comprou</th><th class="ld-num">Tarefas</th></tr></thead>
+    <tbody id="ld-body"></tbody>
+  </table></div></div>
+  <p class="ld-sect">Últimos eventos</p>
+  <div class="ld-card"><div id="ld-eventos" class="ld-ev"></div></div>
+  <p class="ld-foot" id="ld-foot"></p>
 </div>
 
 <!-- EMPRESA -->
@@ -1579,6 +1633,7 @@ function go(p){
   document.querySelectorAll('.ni').forEach(x=>x.classList.remove('active'));
   document.getElementById('page-'+p).classList.add('active');
   document.querySelector(`.ni[onclick="go('${p}')"]`)?.classList.add('active');
+  if(p==='leads') loadLeads(false);
 }
 
 // Tema claro / escuro
@@ -1599,7 +1654,7 @@ themeLabel();
 // Cor de cada seção: ícone do menu, cabeçalho e ícone da página
 const PAGE_COLORS={
   portfolio:['#6E7DF0','#8B5CF6'], infoprodutos:['#F59E0B','#EC4899'], marketing:['#EF4444','#F59E0B'], lojas:['#16A34A','#3B82F6'], sites:['#14B8A6','#3B82F6'], empresas:['#94A3B8','#64748B'],
-  dashboard:['#4F6EF7','#8B5CF6'], empresa:['#16A34A','#14B8A6'], prompt:['#0EA5E9','#6366F1'],
+  dashboard:['#4F6EF7','#8B5CF6'], leads:['#22C55E','#4F6EF7'], empresa:['#16A34A','#14B8A6'], prompt:['#0EA5E9','#6366F1'],
   projetos:['#3B82F6','#06B6D4'], perfis:['#EC4899','#8B5CF6'], pipeline:['#8B5CF6','#4F6EF7'],
   prontos:['#22C55E','#14B8A6'], contas:['#E1306C','#8134AF'], ideias:['#F59E0B','#F97316'], ferramentas:['#0EA5E9','#64748B'],
   custos:['#EF4444','#F59E0B'], mensal:['#6366F1','#EC4899'], financeiro:['#14B8A6','#22C55E'],
@@ -2988,6 +3043,67 @@ function delEmailRow(id){
   emailRows=emailRows.filter(x=>x.id!==id);saveEmails();renderEmails();
 }
 
+
+// ── LEADS (CRM) ────────────────────────────────────────────────────────────
+// Os dados vêm da função "hub-leads" do Supabase (Candeia CRM). Ela confere no
+// servidor o login do Google (token do Firebase) e a lista de e-mails. Nada de
+// clientes fica salvo no navegador: só na memória desta aba.
+const LEADS_URL='https://zottntimhhsgwsgtvguz.supabase.co/functions/v1/hub-leads';
+const LD_MARCAS={candeia:'Candeia Tec',vida:'MultiplicaMente',frei:'Frei Miguel',tamara:'Tâmara Cavalcante'};
+const LD_ETAPAS={lead_novo:'Lead novo',em_conversa:'Em conversa',checkout_iniciado:'Checkout iniciado',pagamento_pendente:'Pagamento pendente',cliente:'Cliente',recorrente:'Recorrente',perdido:'Perdido'};
+const LD_EVENTOS={lead_formulario:'Lead de formulário',lista_espera:'Lista de espera',mensagem_recebida:'Mensagem recebida',checkout_abandonado:'Carrinho abandonado',pix_gerado:'Pix gerado',boleto_gerado:'Boleto gerado',compra_aprovada:'Compra aprovada',compra_recusada:'Compra recusada',reembolso:'Reembolso',chargeback:'Chargeback',trial_iniciado:'Teste grátis iniciado',assinatura_ativa:'Assinatura ativa',assinatura_renovada:'Assinatura renovada',assinatura_cancelada:'Assinatura cancelada',comentario_instagram:'Comentário no Instagram',outro:'Outro'};
+let LD=null, ldLoading=false;
+const ldNome=(m,k)=>m[k]||String(k||'').replace(/_/g,' ');
+const ldBRL=v=>Number(v||0).toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
+const ldData=d=>d?new Date(d).toLocaleString('pt-BR',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'}):'—';
+function ldMsg(t){const el=document.getElementById('ld-msg');if(!el)return;el.hidden=!t;el.textContent=t||'';}
+async function loadLeads(force){
+  if(ldLoading||(LD&&!force)) return renderLeads();
+  const user=window.auth&&auth.currentUser;
+  if(!user){ldMsg('Entre no Hub para ver os leads.');return;}
+  ldLoading=true;ldMsg('Carregando os leads...');
+  try{
+    const tk=await user.getIdToken();
+    const r=await fetch(LEADS_URL,{headers:{Authorization:'Bearer '+tk}});
+    const j=await r.json().catch(()=>({}));
+    if(!r.ok) throw new Error(j.erro||('erro '+r.status));
+    LD=j;ldMsg('');ldFiltros();
+  }catch(e){ldMsg('Não foi possível ler o CRM: '+e.message);}
+  finally{ldLoading=false;renderLeads();}
+}
+function ldFiltros(){
+  const ms=new Set(),es=new Set();
+  (LD.leads||[]).forEach(l=>{(l.marcas||[]).forEach(m=>ms.add(m));if(l.etapa)es.add(l.etapa);});
+  const fill=(id,vals,map,first)=>{const el=document.getElementById(id);const cur=el.value;
+    el.innerHTML=`<option value="">${first}</option>`+[...vals].sort().map(v=>`<option value="${safeText(v)}">${safeText(ldNome(map,v))}</option>`).join('');el.value=cur;};
+  fill('ld-marca',ms,LD_MARCAS,'Todas as marcas');fill('ld-etapa',es,LD_ETAPAS,'Todas as etapas');
+}
+function renderLeads(){
+  const body=document.getElementById('ld-body');if(!body)return;
+  const all=(LD&&LD.leads)||[];
+  const q=(document.getElementById('ld-busca').value||'').trim().toLowerCase();
+  const fm=document.getElementById('ld-marca').value, fe=document.getElementById('ld-etapa').value;
+  const rows=all.filter(l=>(!fm||(l.marcas||[]).includes(fm))&&(!fe||l.etapa===fe)&&(!q||[l.nome,l.email,l.telefone].some(x=>String(x||'').toLowerCase().includes(q))));
+  const clientes=all.filter(l=>l.etapa==='cliente'||l.etapa==='recorrente').length;
+  const pend=all.filter(l=>l.etapa==='pagamento_pendente'||l.etapa==='checkout_iniciado').length;
+  const total=all.reduce((s,l)=>s+Number(l.total_comprado||0),0);
+  document.getElementById('ld-stats').innerHTML=[
+    ['c1','Contatos',all.length,'no CRM'],['c2','Clientes',clientes,'compraram'],
+    ['c4','Pendentes',pend,'Pix, boleto ou carrinho'],['c3','Vendido',ldBRL(total),'compras aprovadas']
+  ].map(([c,l,v,s])=>`<div class="sc ${c}"><div class="sl">${l}</div><div class="sv">${safeText(v)}</div><div class="ss">${s}</div></div>`).join('');
+  if(!LD){body.innerHTML='<tr><td colspan="6" class="ld-vazio">—</td></tr>';}
+  else if(!rows.length){body.innerHTML=`<tr><td colspan="6" class="ld-vazio">${all.length?'Nenhum contato com esse filtro.':'Ainda não há contatos no CRM. Eles aparecem aqui quando chegar a primeira venda ou lead.'}</td></tr>`;}
+  else body.innerHTML=rows.map(l=>`<tr>
+    <td><div class="ld-nome">${safeText(l.nome||'(sem nome)')}</div><div class="ld-sub">${safeText([l.email,l.telefone].filter(Boolean).join(' · '))}</div></td>
+    <td>${(l.marcas||[]).map(m=>`<span class="ld-pill">${safeText(ldNome(LD_MARCAS,m))}</span>`).join('')||'—'}</td>
+    <td><span class="ld-pill e-${safeText(l.etapa)}">${safeText(ldNome(LD_ETAPAS,l.etapa))}</span>${l.nao_perturbe?'<div class="ld-sub">não perturbe</div>':''}</td>
+    <td>${l.ultimo_evento?safeText(ldNome(LD_EVENTOS,l.ultimo_evento)):'—'}<div class="ld-sub">${safeText(l.ultimo_produto||'')} ${l.ultimo_evento_em?'· '+ldData(l.ultimo_evento_em):''}</div></td>
+    <td class="ld-num">${ldBRL(l.total_comprado)}</td>
+    <td class="ld-num">${Number(l.tarefas_abertas||0)||'—'}</td></tr>`).join('');
+  const ev=(LD&&LD.eventos)||[];
+  document.getElementById('ld-eventos').innerHTML=ev.length?ev.map(e=>`<div class="ld-evr"><div><b>${safeText(ldNome(LD_EVENTOS,e.tipo))}</b> <span class="ld-sub">${safeText(e.produto_nome||'')}${e.fonte?' · '+safeText(e.fonte):''}</span></div><div class="ld-num">${e.valor!=null?ldBRL(e.valor)+' · ':''}${ldData(e.ocorreu_em)}</div></div>`).join(''):'<div class="ld-vazio">Nenhum evento ainda.</div>';
+  document.getElementById('ld-foot').textContent=LD?`Atualizado ${ldData(LD.gerado_em)}. Mostrando ${rows.length} de ${all.length}.`:'';
+}
 
 // ── FIREBASE AUTH + FIRESTORE SYNC ─────────────────────────────────────────
 // candeiatec.app é o novo nome de corujalabs.dev: os dois entram enquanto o Google termina a troca
