@@ -1,0 +1,5 @@
+-- Aplicada em 24/11/2026 no Candeia CRM (zottntimhhsgwsgtvguz).
+-- eventos.utm (campanha de cada evento), registrar_evento grava p_utm no evento,
+-- tabela gastos_campanha (gasto diário por anúncio), tabela cache_externo (cache de 10 min),
+-- função campanhas_resumo(p_dias) para a tela Campanhas do Hub.
+-- Texto completo: ver o histórico de migrações do Supabase ("campanhas_e_cache").

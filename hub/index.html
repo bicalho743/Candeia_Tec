@@ -123,6 +123,34 @@ html,body{height:100%;background:var(--bg);color:var(--tx);font-family:var(--san
 .ld-foot{font-size:12px;color:var(--tx3);margin-top:14px}
 @media(max-width:700px){#ld-busca{width:100%}.ld-pa{width:100%}.ld-pa .ld-in{flex:1 1 140px}}
 
+/* FUNIL e CAMPANHAS */
+.ld-msg.info{background:var(--blue-bg);color:var(--blue-tx)}
+.fn-resumo{font-size:15px;color:var(--tx2);margin:0 0 12px}
+.fn-card{padding:6px 16px 10px}
+.fn-head,.fn-row{display:grid;grid-template-columns:minmax(120px,190px) 1fr 64px 76px 92px;gap:12px;align-items:center}
+.fn-head{font-size:11px;font-weight:700;color:var(--tx3);text-transform:uppercase;letter-spacing:.06em;font-family:var(--mono);padding:8px 0 4px}
+.fn-row{padding:7px 0;border-bottom:1px solid var(--border);font-size:13.5px}
+.fn-row:last-child{border-bottom:none}
+.fn-track{height:12px;background:var(--bg3);border-radius:6px;overflow:hidden}
+.fn-fill{height:100%;background:var(--acc);border-radius:6px}
+.fn-gargalo .fn-fill{background:var(--red)}
+.fn-gargalo .fn-pa{color:var(--red-tx);font-weight:800}
+.fn-tag{font-size:10.5px;font-weight:700;color:var(--red-tx);background:var(--red-bg);padding:1px 7px;border-radius:10px;margin-left:4px;white-space:nowrap}
+.fn-n,.fn-p{text-align:right;font-variant-numeric:tabular-nums}
+.fn-n{font-weight:700}
+.fn-comp .fn-row{grid-template-columns:minmax(100px,150px) 1fr 44px 60px 70px;font-size:12.5px;padding:5px 0}
+.fn-2col{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.fn-grp{padding:6px 0 10px;border-bottom:1px dashed var(--border)}
+.fn-grp:last-child{border-bottom:none}
+.fn-grp-t{font-weight:700;font-size:14px;padding:4px 0}
+.fn-c{text-align:center}
+.fn-ok{color:var(--green-tx);font-weight:800}
+.cp-var td{background:var(--bg2);font-size:12.5px}
+.cp-alerta>td:first-child{box-shadow:inset 3px 0 0 var(--red)}
+.cp-flag{font-size:11.5px;color:var(--red-tx);font-weight:700}
+.ld-foot code{font-family:var(--mono);font-size:11px;background:var(--bg3);padding:2px 6px;border-radius:5px;word-break:break-all}
+@media(max-width:900px){.fn-2col{grid-template-columns:1fr}.fn-head,.fn-row{grid-template-columns:minmax(90px,1fr) 1fr 44px 56px 64px;gap:8px}.fn-head span:nth-child(2){visibility:hidden}}
+
 /* BADGES */
 .badge{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:600;padding:4px 10px;border-radius:20px}
 .badge::before{content:'';width:6px;height:6px;border-radius:50%;flex-shrink:0}
@@ -737,6 +765,14 @@ window.db   = firebase.firestore();
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
       <span>Leads (CRM)</span>
     </div>
+    <div class="ni" onclick="go('funil')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 4h18l-7 8v6l-4 2v-8z"/></svg>
+      <span>Funil do Planner</span>
+    </div>
+    <div class="ni" onclick="go('campanhas')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11v2a1 1 0 001 1h2l5 4V6L6 10H4a1 1 0 00-1 1z"/><path d="M15.5 8.5a5 5 0 010 7"/><path d="M18.5 5.5a9 9 0 010 13"/></svg>
+      <span>Campanhas</span>
+    </div>
     <div class="ni" onclick="go('empresa')">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
       <span>Candeia Tec</span>
@@ -850,6 +886,48 @@ window.db   = firebase.firestore();
   <p class="ld-sect">Últimos eventos</p>
   <div class="ld-card"><div id="ld-eventos" class="ld-ev"></div></div>
   <p class="ld-foot" id="ld-foot"></p>
+</div>
+
+<!-- FUNIL DO PLANNER -->
+<div class="page" id="page-funil">
+  <div class="ph">
+    <div><div class="pt">Funil do Planner</div><div class="ps">Contas novas do Planner Organiza, etapa por etapa, até assinar</div></div>
+    <div class="pa ld-pa">
+      <select id="fn-dias" class="ld-in" onchange="loadFunil(false)"><option value="7">7 dias</option><option value="14">14 dias</option><option value="30" selected>30 dias</option><option value="60">60 dias</option></select>
+      <button class="btn btn-p btn-sm" onclick="loadFunil(true)">Atualizar</button>
+    </div>
+  </div>
+  <div class="ld-msg info">“PDF” e “Viu planos” são medidos desde 24/11/2026. Antes disso aparecem vazios.</div>
+  <div id="fn-msg" class="ld-msg" hidden></div>
+  <p class="fn-resumo" id="fn-resumo"></p>
+  <div class="ld-card fn-card"><div class="fn-head"><span>Etapa</span><span></span><span class="ld-num">Contas</span><span class="ld-num">% do total</span><span class="ld-num">% da anterior</span></div><div id="fn-geral"></div></div>
+  <div class="fn-2col">
+    <div><p class="ld-sect">Por canal</p><div class="ld-card fn-card" id="fn-canal"></div></div>
+    <div><p class="ld-sect">Por origem</p><div class="ld-card fn-card" id="fn-origem"></div></div>
+  </div>
+  <p class="ld-sect">Contas do período</p>
+  <div class="ld-card" id="fn-contas"></div>
+  <p class="ld-foot" id="fn-foot"></p>
+</div>
+
+<!-- CAMPANHAS -->
+<div class="page" id="page-campanhas">
+  <div class="ph">
+    <div><div class="pt">Campanhas</div><div class="ps">Gasto, leads e vendas por campanha e por variante (teste A/B)</div></div>
+    <div class="pa ld-pa">
+      <select id="cp-dias" class="ld-in" onchange="loadCampanhas(false)"><option value="7">7 dias</option><option value="14">14 dias</option><option value="30" selected>30 dias</option><option value="60">60 dias</option><option value="90">90 dias</option></select>
+      <button class="btn btn-p btn-sm" onclick="loadCampanhas(true)">Atualizar</button>
+    </div>
+  </div>
+  <div class="stats" id="cp-stats"></div>
+  <div id="cp-msg" class="ld-msg" hidden></div>
+  <div class="ld-card"><div class="ld-wrap"><table class="ld-table">
+    <thead><tr><th>Campanha / variante</th><th class="ld-num">Gasto</th><th class="ld-num">Leads</th><th class="ld-num">Custo/lead</th><th class="ld-num">Checkouts</th><th class="ld-num">Vendas</th><th class="ld-num">Custo/venda</th><th class="ld-num">Vendido</th><th class="ld-num">Retorno</th></tr></thead>
+    <tbody id="cp-body"></tbody>
+  </table></div></div>
+  <p class="ld-foot" id="cp-foot"></p>
+  <p class="ld-foot">Para a venda ser ligada à campanha, o link do anúncio precisa da etiqueta:
+  <code>utm_source=meta&amp;utm_medium=paid&amp;utm_campaign={{campaign.name}}&amp;utm_term={{adset.name}}&amp;utm_content={{ad.name}}</code></p>
 </div>
 
 <!-- EMPRESA -->
@@ -1634,6 +1712,8 @@ function go(p){
   document.getElementById('page-'+p).classList.add('active');
   document.querySelector(`.ni[onclick="go('${p}')"]`)?.classList.add('active');
   if(p==='leads') loadLeads(false);
+  if(p==='funil') loadFunil(false);
+  if(p==='campanhas') loadCampanhas(false);
 }
 
 // Tema claro / escuro
@@ -1654,7 +1734,7 @@ themeLabel();
 // Cor de cada seção: ícone do menu, cabeçalho e ícone da página
 const PAGE_COLORS={
   portfolio:['#6E7DF0','#8B5CF6'], infoprodutos:['#F59E0B','#EC4899'], marketing:['#EF4444','#F59E0B'], lojas:['#16A34A','#3B82F6'], sites:['#14B8A6','#3B82F6'], empresas:['#94A3B8','#64748B'],
-  dashboard:['#4F6EF7','#8B5CF6'], leads:['#22C55E','#4F6EF7'], empresa:['#16A34A','#14B8A6'], prompt:['#0EA5E9','#6366F1'],
+  dashboard:['#4F6EF7','#8B5CF6'], leads:['#22C55E','#4F6EF7'], funil:['#8B5CF6','#4F6EF7'], campanhas:['#F59E0B','#EF4444'], empresa:['#16A34A','#14B8A6'], prompt:['#0EA5E9','#6366F1'],
   projetos:['#3B82F6','#06B6D4'], perfis:['#EC4899','#8B5CF6'], pipeline:['#8B5CF6','#4F6EF7'],
   prontos:['#22C55E','#14B8A6'], contas:['#E1306C','#8134AF'], ideias:['#F59E0B','#F97316'], ferramentas:['#0EA5E9','#64748B'],
   custos:['#EF4444','#F59E0B'], mensal:['#6366F1','#EC4899'], financeiro:['#14B8A6','#22C55E'],
@@ -3103,6 +3183,117 @@ function renderLeads(){
   const ev=(LD&&LD.eventos)||[];
   document.getElementById('ld-eventos').innerHTML=ev.length?ev.map(e=>`<div class="ld-evr"><div><b>${safeText(ldNome(LD_EVENTOS,e.tipo))}</b> <span class="ld-sub">${safeText(e.produto_nome||'')}${e.fonte?' · '+safeText(e.fonte):''}</span></div><div class="ld-num">${e.valor!=null?ldBRL(e.valor)+' · ':''}${ldData(e.ocorreu_em)}</div></div>`).join(''):'<div class="ld-vazio">Nenhum evento ainda.</div>';
   document.getElementById('ld-foot').textContent=LD?`Atualizado ${ldData(LD.gerado_em)}. Mostrando ${rows.length} de ${all.length}.`:'';
+}
+
+// ── FUNIL DO PLANNER e CAMPANHAS ───────────────────────────────────────────
+// Funil: função "hub-funil" (Supabase), que lê o endereço só de leitura do Planner
+// (/admin/funil) com uma chave guardada no servidor. Campanhas: função "hub-campanhas",
+// que junta o gasto do Meta Ads com as vendas do CRM pela etiqueta utm_campaign.
+const HUB_FN='https://zottntimhhsgwsgtvguz.supabase.co/functions/v1/';
+async function hubFetch(fn,params,timeoutMs){
+  const user=window.auth&&auth.currentUser;
+  if(!user) throw new Error('entre no Hub primeiro');
+  const tk=await user.getIdToken();
+  const ctl=new AbortController();const t=setTimeout(()=>ctl.abort(),timeoutMs||30000);
+  try{
+    const r=await fetch(HUB_FN+fn+'?'+new URLSearchParams(params),{headers:{Authorization:'Bearer '+tk},signal:ctl.signal});
+    const j=await r.json().catch(()=>({}));
+    if(!r.ok) throw new Error(j.erro||('erro '+r.status));
+    return j;
+  }catch(e){if(e.name==='AbortError')throw new Error('demorou demais para responder');throw e;}
+  finally{clearTimeout(t);}
+}
+const fmtPct=v=>v==null||isNaN(v)?'—':Number(v).toLocaleString('pt-BR',{maximumFractionDigits:1})+'%';
+const hubNum=v=>Number(v||0).toLocaleString('pt-BR');
+function hubMsg(id,t,tipo){const el=document.getElementById(id);if(!el)return;el.hidden=!t;el.textContent=t||'';el.className='ld-msg'+(tipo?' '+tipo:'');}
+
+// ---------- Funil do Planner ----------
+let FN={}, fnLoading=false;
+function fnEtapas(o){if(!o)return[];if(Array.isArray(o))return o;return o.etapas||[];}
+function fnGargalo(et){let gi=-1,gv=101;et.forEach((e,i)=>{if(i===0)return;const prev=et[i-1];if(!prev||!prev.n)return;const p=Number(e.pct_anterior);if(!isNaN(p)&&p<gv){gv=p;gi=i;}});return gi;}
+function fnBarras(et,compacto){
+  if(!et.length) return '<div class="ld-vazio">Sem dados no período.</div>';
+  const max=Math.max(...et.map(e=>Number(e.n)||0),1), g=fnGargalo(et);
+  return '<div class="fn-bars'+(compacto?' fn-comp':'')+'">'+et.map((e,i)=>`<div class="fn-row${i===g?' fn-gargalo':''}">
+    <div class="fn-lb">${safeText(e.rotulo||e.chave)}${i===g?' <span class="fn-tag">maior queda</span>':''}</div>
+    <div class="fn-track"><div class="fn-fill" style="width:${Math.max(2,(Number(e.n)||0)/max*100)}%"></div></div>
+    <div class="fn-n">${hubNum(e.n)}</div>
+    <div class="fn-p" title="% do total">${fmtPct(e.pct_total)}</div>
+    <div class="fn-p fn-pa" title="% da etapa anterior">${i===0?'—':fmtPct(e.pct_anterior)}</div>
+  </div>`).join('')+'</div>';
+}
+function fnGrupo(obj){
+  const ents=Object.entries(obj||{}).map(([k,v])=>[k,fnEtapas(v)]).filter(([,et])=>et.length);
+  ents.sort((a,b)=>(Number(b[1][0]?.n)||0)-(Number(a[1][0]?.n)||0));
+  if(!ents.length) return '<div class="ld-vazio">Sem dados.</div>';
+  return ents.map(([k,et])=>`<div class="fn-grp"><div class="fn-grp-t">${safeText(k==='?'?'sem registro (antes de 24/11)':k)} <span class="ld-sub">${hubNum(et[0]?.n)} contas</span></div>${fnBarras(et,true)}</div>`).join('');
+}
+async function loadFunil(force){
+  const dias=document.getElementById('fn-dias').value;
+  if(fnLoading) return;
+  if(FN[dias]&&!force) return renderFunil();
+  fnLoading=true;hubMsg('fn-msg','Carregando o funil do Planner... (se o servidor do Planner estiver dormindo, leva até 1 minuto)');
+  try{FN[dias]=await hubFetch('hub-funil',force?{dias,atualizar:'1'}:{dias},65000);hubMsg('fn-msg',FN[dias]._cache&&FN[dias]._cache.aviso?FN[dias]._cache.aviso:'');}
+  catch(e){hubMsg('fn-msg','Não foi possível ler o funil: '+e.message);}
+  finally{fnLoading=false;renderFunil();}
+}
+function renderFunil(){
+  const d=FN[document.getElementById('fn-dias').value];
+  const set=(id,h)=>{const el=document.getElementById(id);if(el)el.innerHTML=h;};
+  if(!d){['fn-geral','fn-canal','fn-origem','fn-contas'].forEach(id=>set(id,'<div class="ld-vazio">—</div>'));set('fn-resumo','');return;}
+  const et=fnEtapas(d), ass=et.find(e=>e.chave==='assinou');
+  set('fn-resumo',`<b>${hubNum(d.total)}</b> contas criadas de ${safeText(d.desde||'')} a ${safeText(d.ate||'')}${ass?` · <b>${hubNum(ass.n)}</b> assinaram (${fmtPct(ass.pct_total)})`:''}`);
+  set('fn-geral',fnBarras(et));
+  set('fn-canal',fnGrupo(d.por_canal));
+  set('fn-origem',fnGrupo(d.por_origem));
+  const cols=['onboarding','cliente','proposta','pdf','planos','assinou'];
+  const contas=d.contas||[];
+  set('fn-contas',contas.length?`<div class="ld-wrap"><table class="ld-table"><thead><tr><th>Cadastro</th><th>Conta</th><th>Canal</th><th>Origem</th>${cols.map(c=>`<th class="fn-c">${({onboarding:'Questionário',cliente:'1º cliente',proposta:'1ª proposta',pdf:'PDF',planos:'Viu planos',assinou:'Assinou'})[c]}</th>`).join('')}</tr></thead><tbody>${
+    contas.map(c=>`<tr><td>${safeText(c.data_cadastro||'')}</td><td class="ld-sub">${safeText(c.email_mascarado||'')}</td><td>${safeText(c.canal||'')}</td><td>${safeText(c.origem||'')}</td>${cols.map(k=>`<td class="fn-c">${c[k]?'<span class="fn-ok">✓</span>':'<span class="ld-sub">–</span>'}</td>`).join('')}</tr>`).join('')
+  }</tbody></table></div>`:'<div class="ld-vazio">Nenhuma conta no período.</div>');
+  const c=d._cache;set('fn-foot',c?`Leitura de ${ldData(c.em)}${c.fresco?'':' (antiga)'}. Os números são calculados pelo Planner; o CRM só mostra.`:'');
+}
+
+// ---------- Campanhas ----------
+let CP={}, cpLoading=false;
+async function loadCampanhas(force){
+  const dias=document.getElementById('cp-dias').value;
+  if(cpLoading) return;
+  if(CP[dias]&&!force) return renderCampanhas();
+  cpLoading=true;hubMsg('cp-msg','Carregando as campanhas...');
+  try{CP[dias]=await hubFetch('hub-campanhas',{dias});hubMsg('cp-msg','');}
+  catch(e){hubMsg('cp-msg','Não foi possível ler as campanhas: '+e.message);}
+  finally{cpLoading=false;renderCampanhas();}
+}
+function cpAgrupa(linhas){
+  const m=new Map();
+  linhas.forEach(l=>{const k=(l.campanha||'(sem nome)');if(!m.has(k))m.set(k,{campanha:k,variantes:[],gasto:0,cliques:0,leads:0,checkouts:0,compras:0,receita:0});
+    const g=m.get(k);g.variantes.push(l);['gasto','cliques','leads','checkouts','compras','receita'].forEach(f=>g[f]+=Number(l[f])||0);});
+  return [...m.values()].sort((a,b)=>b.gasto-a.gasto||b.receita-a.receita);
+}
+function cpLinha(r,variante){
+  const cpl=r.leads?r.gasto/r.leads:null, cpv=r.compras?r.gasto/r.compras:null, roas=r.gasto?r.receita/r.gasto:null;
+  const alerta=r.gasto>0&&!r.compras;
+  const poucos=variante&&(Number(r.leads)+Number(r.checkouts)<30);
+  return `<tr class="${variante?'cp-var':''}${alerta?' cp-alerta':''}">
+    <td>${variante?'↳ '+safeText(r.variante||'(sem variante)'):'<b>'+safeText(r.campanha)+'</b>'}${alerta?'<div class="cp-flag">gastou e não registrou venda</div>':''}${poucos?'<div class="ld-sub">poucos dados para concluir</div>':''}</td>
+    <td class="ld-num">${ldBRL(r.gasto)}</td><td class="ld-num">${hubNum(r.leads)}</td><td class="ld-num">${cpl==null?'—':ldBRL(cpl)}</td>
+    <td class="ld-num">${hubNum(r.checkouts)}</td><td class="ld-num">${hubNum(r.compras)}</td><td class="ld-num">${cpv==null?'—':ldBRL(cpv)}</td>
+    <td class="ld-num">${ldBRL(r.receita)}</td><td class="ld-num">${roas==null?'—':roas.toLocaleString('pt-BR',{maximumFractionDigits:2})+'x'}</td></tr>`;
+}
+function renderCampanhas(){
+  const d=CP[document.getElementById('cp-dias').value];
+  const body=document.getElementById('cp-body');if(!body)return;
+  const linhas=(d&&d.linhas)||[], grupos=cpAgrupa(linhas);
+  const tot=grupos.reduce((a,g)=>{['gasto','leads','compras','receita'].forEach(f=>a[f]+=g[f]);return a;},{gasto:0,leads:0,compras:0,receita:0});
+  document.getElementById('cp-stats').innerHTML=[
+    ['c4','Gasto',ldBRL(tot.gasto),'em anúncios'],['c1','Leads',hubNum(tot.leads),tot.leads?ldBRL(tot.gasto/tot.leads)+' por lead':'—'],
+    ['c2','Vendas',hubNum(tot.compras),tot.compras?ldBRL(tot.gasto/tot.compras)+' por venda':'—'],['c3','Retorno',tot.gasto?(tot.receita/tot.gasto).toLocaleString('pt-BR',{maximumFractionDigits:2})+'x':'—',ldBRL(tot.receita)+' vendidos']
+  ].map(([c,l,v,s])=>`<div class="sc ${c}"><div class="sl">${l}</div><div class="sv">${safeText(v)}</div><div class="ss">${safeText(s)}</div></div>`).join('');
+  if(!d){body.innerHTML='<tr><td colspan="9" class="ld-vazio">—</td></tr>';}
+  else if(!grupos.length){body.innerHTML='<tr><td colspan="9" class="ld-vazio">Ainda não há gasto nem vendas com etiqueta de campanha (UTM) no período.</td></tr>';}
+  else body.innerHTML=grupos.map(g=>cpLinha(g,false)+(g.variantes.length>1||g.variantes[0]?.variante?g.variantes.sort((a,b)=>b.gasto-a.gasto).map(v=>cpLinha(v,true)).join(''):'')).join('');
+  document.getElementById('cp-foot').textContent=d?(d.gasto_ate?`Gasto do Meta Ads atualizado até ${new Date(d.gasto_ate+'T12:00').toLocaleDateString('pt-BR')}.`:'O gasto do Meta Ads ainda não está ligado: por enquanto só aparecem as vendas com etiqueta.'):'';
 }
 
 // ── FIREBASE AUTH + FIRESTORE SYNC ─────────────────────────────────────────
