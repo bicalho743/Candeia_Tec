@@ -3276,7 +3276,7 @@ function cpLinha(r,variante){
   const alerta=r.gasto>0&&!r.compras;
   const poucos=variante&&(Number(r.leads)+Number(r.checkouts)<30);
   return `<tr class="${variante?'cp-var':''}${alerta?' cp-alerta':''}">
-    <td>${variante?'↳ '+safeText(r.variante||'(sem variante)'):'<b>'+safeText(r.campanha)+'</b>'}${alerta?'<div class="cp-flag">gastou e não registrou venda</div>':''}${poucos?'<div class="ld-sub">poucos dados para concluir</div>':''}</td>
+    <td>${variante?'↳ '+safeText(r.variante||(Number(r.gasto)>0?'gasto da campanha (sem divisão por anúncio)':'(sem variante)')):'<b>'+safeText(r.campanha)+'</b>'}${alerta?'<div class="cp-flag">gastou e não registrou venda</div>':''}${poucos?'<div class="ld-sub">poucos dados para concluir</div>':''}</td>
     <td class="ld-num">${ldBRL(r.gasto)}</td><td class="ld-num">${hubNum(r.leads)}</td><td class="ld-num">${cpl==null?'—':ldBRL(cpl)}</td>
     <td class="ld-num">${hubNum(r.checkouts)}</td><td class="ld-num">${hubNum(r.compras)}</td><td class="ld-num">${cpv==null?'—':ldBRL(cpv)}</td>
     <td class="ld-num">${ldBRL(r.receita)}</td><td class="ld-num">${roas==null?'—':roas.toLocaleString('pt-BR',{maximumFractionDigits:2})+'x'}</td></tr>`;
