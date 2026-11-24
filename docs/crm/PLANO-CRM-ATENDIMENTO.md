@@ -262,14 +262,33 @@ Todos param assim que chega "compra aprovada". Só para quem deu consentimento: 
 - Coexistência do 31 98742-8641: na Meta concluiu (YCloud é parceiro com acesso total da conta Candeia Tec), mas o número **não apareceu no painel do YCloud**. Ao refazer, a Meta devolve "(#100) WABA ... is already using a payment method". Aberto o chamado **#3912** no suporte do YCloud (ycloud.com/resource/t/3912) pedindo para terminar a ligação.
 - Atenção para próximas tentativas: não recarregar a aba do YCloud enquanto a janela da Meta estiver aberta; entrar pelo **Facebook** (o botão do WhatsApp Business recusa número que já pertence a uma empresa) e escolher a **tamaraorganiza**.
 
+### Hub, campanhas e funil (24/11)
+- **Telas novas no Hub** (candeiatec.com.br/hub, menu "Visão geral"), publicadas na `main`:
+  - **Leads (CRM)**: contatos por marca e etapa, busca, totais e últimos eventos.
+  - **Funil do Planner**: funil de vendas do Planner Organiza (geral, por canal, por origem, contas com e-mail mascarado). Os números vêm do Planner, pelo endereço só de leitura `GET plannerorganiza-api.onrender.com/admin/funil?dias=N` (cabeçalho `X-Funil-Chave`), feito no repositório PlannerOrganizer. O CRM não acessa o banco do Planner.
+  - **Campanhas**: gasto, leads, checkouts, vendas, custo por lead, custo por venda e retorno, por campanha e por variante (teste A/B). Marca em vermelho a campanha que gastou e não registrou venda.
+- **Segurança:** as telas leem as funções `hub-leads`, `hub-funil` e `hub-campanhas` do Supabase. Cada uma confere no servidor o login do Google do Hub (token do Firebase `corujalabs-hub`) e a lista de 3 e-mails. Os segredos ficam só nos Secrets do Supabase. Código em `supabase/functions/` na `main`.
+- **Banco (migração `campanhas_e_cache`):** `eventos.utm` (campanha de cada evento; `registrar_evento` grava o `p_utm`), tabela `gastos_campanha` (gasto diário por anúncio), tabela `cache_externo` (funil do Planner, 10 min), função `campanhas_resumo(p_dias)`.
+- **Padrão de etiqueta nos anúncios** (Parâmetros de URL de cada anúncio no Meta):
+  `utm_source=meta&utm_medium=paid&utm_campaign={{campaign.name}}&utm_term={{adset.name}}&utm_content={{ad.name}}`
+  A venda é ligada à campanha pelo nome (`utm_campaign` = nome da campanha) e à variante pelo nome do anúncio.
+- **n8n, fluxos criados desligados** (esperando chave):
+  - "CRM — Leads da Brevo (Planner Organiza)" (`aHkGs7TzJdSRpvkl`): lista 7 da Brevo → CRM a cada 15 min, marca candeia, sem duplicar (`brevo:<id>`). Falta a credencial Brevo.
+  - "CRM — Gasto diário do Meta Ads" (`R9Gyn15TxNgZWflS`): todo dia às 6h, últimos 7 dias por anúncio → `gastos_campanha`. Falta a credencial do Meta (token só de leitura, `ads_read`).
+- **E-mail de boas-vindas:** Planner Organiza continua com o e-mail atual (backend do Planner, Brevo). Demais produtos: sair pela Brevo com remetente da Candeia Tec (falta autenticar candeiatec.com.br na Brevo e aprovar os textos).
+
 ### Pendente
 - [x] Airtable: token novo colado na credencial do n8n (feito em 23/11).
 - [x] Cadastrar na Kiwify o webhook `kiwify-crm` e apagar o "TEST-Kiwify-Webhook" (feito em 23/11).
 - [x] Ids da Kiwify dos demais produtos na tabela `produtos` (feito em 23/11).
 - [ ] Conferir a primeira venda real que chegar pelo webhook novo (contato, evento e marca certos).
 - [ ] WhatsApp: o Solano começa a verificação da empresa no Gerenciador de Negócios da Meta.
-- [ ] Tela "Leads" no Hub (fase 2), depois que as vendas reais estiverem entrando.
+- [x] Tela "Leads" no Hub (publicada em 24/11).
 - [ ] Confirmar se o 31 99204-1112 (Tâmara) está no app WhatsApp Business. É requisito da coexistência; hoje ele está ligado à Z-API, que será desligada na migração.
 - [x] Parceiro de coexistência: YCloud (plano Free). Falta o suporte terminar a ligação do 31 98742-8641 (chamado #3912); depois ligar o 31 99204-1112.
 - [ ] Lembretes por e-mail (Pix, boleto, carrinho): escolher o serviço de envio (Resend ou SES) e autenticar os domínios.
 - [ ] Ligar a conferência da assinatura da Kiwify antes de qualquer mensagem automática para carrinho abandonado.
+- [ ] Brevo: criar a chave "n8n CRM" e salvar no n8n; ligar o fluxo "Leads da Brevo".
+- [ ] Meta: criar token só de leitura (ads_read) e salvar no n8n; ligar o fluxo "Gasto diário do Meta Ads".
+- [ ] Colocar os Parâmetros de URL (UTM) em todos os anúncios ativos.
+- [ ] Planner: endereço /admin/funil (sessão do PlannerOrganizer) e segredo PLANNER_FUNIL_CHAVE nos Secrets do Supabase.
