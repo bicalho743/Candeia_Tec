@@ -293,6 +293,6 @@ Todos param assim que chega "compra aprovada". Só para quem deu consentimento: 
 - [x] Brevo: chave "n8n CRM" salva no n8n; fluxo "Leads da Brevo" ligado em 24/11 (só a lista 7, por decisão do Solano; 3 leads importados, 1 descadastrado ignorado).
 - [x] Gasto das campanhas: fluxo "Gasto das campanhas (aba Métricas)" ligado em 24/11 (nível campanha, a partir da planilha do Analista).
 - [ ] Meta, nível anúncio (para teste A/B com custo): token só leitura (ads_read) do portfólio PlannerOrganiza; ao ligar, desligar o fluxo da aba Métricas.
-- [ ] Segurança: o fluxo "Meta Ads — Budget FDS Boost (Casa em Ordem)" tem um token do Meta escrito no código. Trocar o token e passar para credencial, ou desligar se a campanha não existe mais.
+- [x] Segurança: o fluxo "Meta Ads — Budget FDS Boost (Casa em Ordem)" (criado em 10/08) tinha um token do Meta escrito no código. O token venceu em 16/10/2026 e o fluxo falhava toda semana; foi **desligado** em 24/11 a pedido do Solano. Se a regra de verba no fim de semana voltar, pedir ao Gestor de Anúncios, com credencial e não token no código.
 - [ ] Padrão de UTM nas campanhas novas (o Gestor de Anúncios coloca na criação; as no ar não podem ser editadas). As atuais já servem: Casa em Ordem e Planner têm utm_campaign e utm_content.
 - [ ] Planner: endereço /admin/funil (sessão do PlannerOrganizer) e segredo PLANNER_FUNIL_CHAVE nos Secrets do Supabase.
