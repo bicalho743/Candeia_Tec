@@ -12,7 +12,7 @@ const PF_STATUS = {
 const PF_TIPOS = ['App','App + SaaS','SaaS B2B','Infoproduto','Serviço','Persona de conteúdo'];
 const PF_CONTACT_FIELDS = [
   ['email','E-mail operacional','Gmail que recebe tudo'],
-  ['emailPub','E-mail público','contato@dominio — vai na ficha do Play e no site'],
+  ['emailPub','E-mail público','apps: contato@candeiatec.com.br — vai na ficha das lojas e no site'],
   ['instagram','Instagram','@usuario'],
   ['whatsapp','WhatsApp','(31) 9…'],
   ['dominio','Domínio','produto.com.br'],
@@ -67,12 +67,12 @@ function pfMigrate(P){
   add({id:'c26', site:'casa_em_ordem.vidaemmetodo.com.br', pag:'Preço', pri:'Média', txt:'Preço de referência "De R$ 97,00"', fix:'Manter só se o kit já foi vendido por R$ 97 (CDC)', arquivo:'index.html, quizzes', ok:false});
 
   // Frei Miguel
-  setP('mp12', {alerta:'PDFs no histórico do repositório público', emailPub:'corujalabs.dev@gmail.com',
+  setP('mp12', {alerta:'PDFs no histórico do repositório público', emailPub:'freimiguel@gmail.com',
     acao:'Tornar o repositório privado; renomear o produto no Kiwify para "Diário do Despertar"', nota:'Landing corrigida em 05/11/2026: sem contador, sem 131k, depoimentos ocultos, personagem identificado, privacidade e termos. Kiwify no CPF do Solano.'},
     {priv:'f', emailDom:'na'});
 
   // Casa em Ordem é produto da Tâmara (domínio Vida em Método)
-  setP('mp14', {nome:'Casa em Ordem (kit)', marca:'tamara', alerta:'Área do comprador sem login', emailPub:'corujalabs.dev@gmail.com',
+  setP('mp14', {nome:'Casa em Ordem (kit)', marca:'tamara', alerta:'Área do comprador sem login', emailPub:'candeiatec.app@gmail.com',
     acao:'Mover entrega para a área de membros da Kiwify; confirmar se "De R$ 97" é preço real', nota:'Landing R$ 49,90 (JuDImie). Quiz /quiz1 R$ 29,70 (FOqNutF). Domínio vidaemmetodo.com.br.'},
     {priv:'f', landing:'f'});
   const k15=kw('k15'); if(k15) k15.marca='tamara';
@@ -124,7 +124,7 @@ function pfMigrate4(P){
 /* v5 — 15/11/2026: alinhado com a planilha STATUS_APLICATIVOS e o catálogo apps/catalogo.json.
    Contrato Fácil, Etanol ou Gasolina? e Calculadora de Combustível não serão construídos. */
 function pfMigrate5(P){
-  if((P.seedVersion||1) >= 5) return false;
+  if((P.seedVersion||1) >= 5) return pfMigrate6(P);
   P.produtos = (P.produtos||[]).filter(p=>!['mp7','mp8','mp9'].includes(p.id));
   const prod = id => (P.produtos||[]).find(x=>x.id===id);
   const p3 = prod('mp3');
@@ -136,6 +136,24 @@ function pfMigrate5(P){
   const p6 = prod('mp6');
   if(p6){ p6.email=p6.email||'plannerorganiza.app@gmail.com'; p6.emailPub='contato@plannerorganiza.com.br'; p6.instagram=p6.instagram||'@plannerorganiza'; }
   P.seedVersion = 5;
+  pfMigrate6(P);
+  return true;
+}
+
+/* v6 — 19/11/2026: todos os apps usam contato@candeiatec.com.br como e-mail público */
+function pfMigrate6(P){
+  if((P.seedVersion||1) >= 6) return pfMigrate7(P);
+  (P.produtos||[]).forEach(p=>{ if(p.marca==='apps') p.emailPub='contato@candeiatec.com.br'; });
+  P.seedVersion = 6;
+  pfMigrate7(P);
+  return true;
+}
+
+/* v7 — 20/11/2026: e-mail público do Frei Miguel Lucero */
+function pfMigrate7(P){
+  if((P.seedVersion||1) >= 7) return false;
+  const p = (P.produtos||[]).find(x=>x.id==='mp12'); if(p) p.emailPub='freimiguel@gmail.com';
+  P.seedVersion = 7;
   return true;
 }
 function pfP(){ return D.portfolio; }

@@ -1,5 +1,7 @@
 # Candeia Tec — Hub
 
+**[📊 Dashboard](https://docs.google.com/spreadsheets/d/1qfFkpP9ACuzrqQV232LqdaUsPi6kgR15tx0Gjqqcx8Y/edit?gid=43179791#gid=43179791)**
+
 Painel de gestão dos produtos, marcas, contatos, domínios, infoprodutos, sites e empresas.
 Página inicial: **Portfólio**. Dados salvos no Firestore (`hubs/{uid}.portfolio`).
 

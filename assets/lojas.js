@@ -27,7 +27,7 @@ function ljBase(app){
 function ljEsperado(campo, app){
   const r = campo.regra||'';
   if(r.startsWith('url:')) return LJ.padrao.urls[r.slice(4)].replace('{base}', ljBase(app));
-  if(r==='emailSuporte') return ljVazio(app.dominio) ? '' : LJ.padrao.emailSuporte.replace('{dominio}', app.dominio);
+  if(r==='emailSuporte'){ const e=LJ.padrao.emailSuporte; return !e.includes('{dominio}') ? e : ljVazio(app.dominio) ? '' : e.replace('{dominio}', app.dominio); }
   if(r==='copyright') return LJ.padrao.copyright;
   if(r==='desenvolvedor') return LJ.padrao.desenvolvedor;
   return '';
@@ -99,7 +99,7 @@ function renderLojas(){
     <div class="ph"><div><div class="pt">Apps nas lojas</div>
       <div class="ps">${apps.length} apps · ${total.falta} campos obrigatórios faltando · ${total.warn} fora do padrão · catálogo de ${pfEsc(LJ.atualizado)}</div></div>
       <div class="pa"><button class="btn btn-g btn-sm" onclick="ljCsv()">⤓ Baixar planilha (CSV)</button></div></div>
-    <div class="pf-note">Padrão Candeia Tec: copyright <b>${pfEsc(LJ.padrao.copyright)}</b> · suporte <b>contato@domínio-do-app</b> · páginas em <b>/privacidade/ /termos/ /excluir-conta/ /suporte/</b>. Os dados ficam em <span class="mono">apps/catalogo.json</span> no repositório: peça a atualização ao Claude. Passe o mouse numa célula para ver o detalhe.</div>
+    <div class="pf-note">Padrão Candeia Tec: copyright <b>${pfEsc(LJ.padrao.copyright)}</b> · suporte <b>${pfEsc(LJ.padrao.emailSuporte)}</b> · páginas em <b>/privacidade/ /termos/ /excluir-conta/ /suporte/</b>. Os dados ficam em <span class="mono">apps/catalogo.json</span> no repositório: peça a atualização ao Claude. Passe o mouse numa célula para ver o detalhe.</div>
     <div class="pf-kpis">${kpis}</div>
     <div class="pf-toolbar">
       <div class="pf-seg" style="margin-left:0">${[['todas','Todas as lojas'],['play','Google Play'],['apple','App Store']].map(([k,l])=>`<button class="${ljView.loja===k?'on':''}" onclick="ljSet('loja','${k}')">${l}</button>`).join('')}</div>

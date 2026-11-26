@@ -48,7 +48,10 @@ def esperado(campo, app):
     if r.startswith("url:"):
         return P["urls"][r[4:]].replace("{base}", base(app))
     if r == "emailSuporte":
-        return "" if vazio(app.get("dominio")) else P["emailSuporte"].replace("{dominio}", app["dominio"])
+        e = P["emailSuporte"]
+        if "{dominio}" not in e:
+            return e
+        return "" if vazio(app.get("dominio")) else e.replace("{dominio}", app["dominio"])
     if r == "copyright":
         return P["copyright"]
     if r == "desenvolvedor":
