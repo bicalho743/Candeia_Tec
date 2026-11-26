@@ -52,6 +52,18 @@ Trabalho no PC: ver bicalho743/meu-enxoval-em-dia/docs/CLAUDE-NO-PC.md
 - **Branches:** trabalhar na `main`. `claude/serene-rubin-xpfd62` é um histórico separado com o plano antigo
   (`docs/crm/`); o conteúdo útil já foi para `crm/PLANO.md`. As branches `claude/hub-*` já estão na `main`.
 
+## Também feito em 15 a 20/11/2026 (sessão do Hub)
+- **Apps nas lojas:** `apps/catalogo.json` (fonte única dos dados de cada app nas lojas), `apps/PADRAO.md`,
+  `apps/gerar_planilha.py` → `apps/STATUS_APLICATIVOS.xlsx`, página "Apps nas lojas" no Hub (`assets/lojas.js`).
+- **E-mails:** contato público de todos os apps é `contato@candeiatec.com.br`. A conta Google da empresa passou de
+  corujalabs.dev@gmail.com para `candeiatec.app@gmail.com` (o login do Hub aceita os dois). Frei Miguel: `freimiguel@gmail.com`.
+- **Hub:** botão Dashboard no topo do menu (planilha do time); tema claro padrão; migrações do Portfólio até
+  `seedVersion` 7 (`assets/portfolio.js`).
+- **WhatsApp Business:** capa e foto do perfil em `marca/whatsapp/` (gerar com `node marca/whatsapp/gerar.js`).
+- **Pendências ligadas a outros repositórios:** remetente `contato@candeiatec.com.br` no Brevo e senha do banco
+  exposta na landing do Planner (ver `LandingPage_Planner/CLAUDE.md`); confirmar que `contato@candeiatec.com.br` recebe e-mails.
+- **Branch `claude/amazing-mendel-cvpd2z`:** tudo dela já está na `main`; pode ser apagada no GitHub.
+
 ## Regras
 - Repositório **público**: nunca colocar chaves, tokens, senhas ou dados de clientes.
 - Pagamento, apagar algo ou mensagem para cliente: perguntar ao Solano antes.
